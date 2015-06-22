@@ -1,0 +1,57 @@
+---
+title: About me
+---
+
+<h1>About me</h1>
+<img src="/images/me.jpg" style="float: right; margin-left: 18px; margin-top: 20px; margin-bottom: 18px; width: 350px" />
+<p>
+  I am a postdoc at the
+  <a href="http://www.informatica.unibo.it/it">Departement of Computer Science</a>, 
+  <a href="http://www.unibo.it">University of Bologna</a>. I am working on the project
+  "<a href="http://list.fwf.ac.at/en/research-in-practice/in-the-spotlight-schroedinger/list-of-schroedinger-fellows/2014/185965">Complexity Analysis of Higher-Order Rewrite Systems</a>",
+  with kind support of the <a href="http://fwf.ac.at">Austrian science fund (FWF)</a>
+  and the <a href="http://focus.cs.unibo.it/bin/view/Main/WebHome">Focus research team</a>.
+</p>
+<p>
+  I like to code, have a look at my <a href="software.html">software page</a>.
+<p>
+  I received my PhD and my MSc in Computer Science at the
+  <a href="http://uibk.ac.at">University of Innsbruck</a>.
+  For details, see my <a href="./cv.html">Curriculum Vitae</a>.
+  <!-- My Erdos Number is 4: Paul Erdős ↔ Andreas R. Blass ↔ Nachum Dershowitz ↔ Georg Moser ↔ Martin Avanzini. -->
+</p>
+<h2> Research Interests </h2>
+<ul>
+  <li>First and higher-order rewrite systems</li>
+  <li>Implicit computational complexity</li>
+  <li>Automated of complexity analysis</li>
+  <li>Proof theory</li>    
+  <li>Functional programming</li>
+</ul>  
+<div style="clear: both"></div>
+
+<h2> Upcoming Events </h2>
+<ul>
+  $for(events)$
+  <li><p>$partial("templates/event.html")$</p></li>
+  $endfor$
+</ul>
+
+<h2> Recent Publications </h2>
+<ul>
+    $for(publications)$
+    <li><p>$partial("templates/bibtex-entry.html")$</p></li>
+    $endfor$
+</ul>
+
+<a href="publications.html">all...</a>
+
+<h2> Projects </h2>
+<ul>
+  $for(projects)$
+  <p>
+    <li>$partial("templates/project.html")$</li>
+  </p>
+  $endfor$
+</ul>  
+

@@ -1,0 +1,29 @@
+<h1>$title$</h1>
+<div class="publication">
+  <div class="publication-image">
+    <a href="/papers/$bibid$.pdf"><img height="150px" src="/papers/$bibid$.png" alt="$title$"/></a>
+  </div>
+  <div class="publication-author">$authors$</div>
+  <div class="publication-venue">$partial("templates/bibtex-entry-where.html")$</div>
+  $if(copyright)$<div class="publication-copyright">© $copyright$</div>$endif$
+  <div style="clear: both"></div>  
+  <h2>Abstract</h2>
+  <div class="publication-abstract">$body$</div>
+  <p>
+    <div class="links">
+      <a class="pdf-link link" href="/papers/$bibid$.pdf">Manuscript</a>
+      $if(arxiv)$<a class="pdf-link link" href="http://arxiv.org/pdf/$arxiv$">Techreport</a>$endif$
+      $if(slides)$<a class="pdf-link link" href="/slides/$slides$">Slides</a>$endif$
+      <span style="float:right">
+	$if(doi)$<a class="doi-link link" href="http://dx.doi.org/$doi$">electronic edition</a>$endif$
+        $if(arxiv)$<a class="arxiv-link link" href="http://arxiv.org/abs/$arxiv$">ArXiv</a>$endif$
+      </span>
+    </div>
+  </p>
+  <h2>Categories</h2>
+  <p>
+    $theTags$
+  </p>
+  <h2>BibTex</h2>
+    <pre class="publication-bibtex">$partial("templates/bibtex.bib")$</pre>
+</div>

@@ -1,0 +1,11 @@
+<h1>$title$</h1>
+<ul class="publication-list">
+    $for(publications)$
+    <li>
+        <p>
+            $partial("templates/bibtex-entry.html")$
+        </p>
+    </li>
+    $endfor$
+</ul>
+<a href="/publications.html">all...</a>

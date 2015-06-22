@@ -1,0 +1,73 @@
+---
+title: List of Publications
+---
+<h1> List of Publications </h1>
+<div id="biblink">
+  <a class="pdf-link" href="/publications.pdf">PDF version</a>
+  <a class="bib-link" href="/bibliography.bib">BibTex version</a>
+</div>
+
+<div class="tagcloud">
+$tagcloud$
+</div>
+
+<h2> Thesis </h2>
+<ul class="publicaton-list">
+$for(thesis)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>
+<h2> In Preparation </h2>
+<ul class="publicaton-list">
+$for(draft)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>
+<h2> Articles </h2>
+<ul class="publicaton-list">
+$for(article)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>
+<h2> International Conference Proceedings </h2>
+<ul class="publicaton-list">
+$for(conference)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>
+<h2> Workshop Papers </h2>
+<ul class="publicaton-list">
+$for(workshop)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>
+<h2> Miscellaneous </h2>
+<ul class="publicaton-list">
+$for(misc)$
+<li>
+  <p>
+    $partial("templates/bibtex-entry.html")$
+  </p>
+</li>
+$endfor$
+</ul>

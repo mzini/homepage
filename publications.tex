@@ -1,0 +1,22 @@
+\newcommand{\ssec}[2]{%
+\section*{#1}
+\begin{refsection}
+\phantom{#2}\vspace{-\baselineskip}
+\printbibliography[heading=none]
+\end{refsection}
+}
+
+\begin{center}
+  {\LARGE \textsc{List of Publications}}\\[-1mm]
+  {\textsc{Martin Avanzini}}
+\end{center}
+
+\ssec{Thesis}{$for(thesis)$\cite{$bibid$}$endfor$}
+
+\ssec{Articles}{$for(article)$\cite{$bibid$}$endfor$}
+
+\ssec{International Conference Proceedings}{$for(conference)$\cite{$bibid$}$endfor$}
+
+\ssec{Workshop Papers}{$for(workshop)$\cite{$bibid$}$endfor$}
+
+\ssec{Miscellaneous}{$for(misc)$\cite{$bibid$}$endfor$}

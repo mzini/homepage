@@ -1,0 +1,332 @@
+/* ---------------------------------------------------------------------- */
+/* outer */
+/* ---------------------------------------------------------------------- */
+
+html {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+div#navigation {
+    padding-bottom: 10px;
+    padding-right: 10px;    
+    text-align: right;
+    float: left;
+    position: fixed;
+    top:0px;
+    width: 140px;
+    height: 100%;
+}
+
+div#navigation h1, div#navigation a {
+    display: block;
+}
+
+div#navigation a {
+    border: none;
+    font-style: normal;
+    margin-bottom: 15px;        
+}
+
+div#navigation p {
+    text-align: right;
+}
+div#navigation h1 {
+    border: none;
+    margin-bottom:20px;
+}
+
+/* h1#title { */
+/*     margin-top:20px; */
+/*     margin-bottom:20px;     */
+/*     font-size: 32px;     */
+/* }     */
+
+div#content {
+    margin: 0px 0px 0px 180px;
+    width: 844px;
+}
+
+div#footer{
+    padding-top:40px;
+    text-align:center;    
+    clear:both;
+    font-size:50%;
+}
+
+/* ---------------------------------------------------------------------- */
+/* inner */
+/* ---------------------------------------------------------------------- */
+
+html {
+    font-size: 16px;
+    font-family:arial,sans-serif;
+    line-height: 28px;    
+    color: #555;        
+}
+
+p {
+    margin: 20px 0px;
+    text-align: justify;
+}
+
+a {
+    color: #2B5573;
+    font-style: italic;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h1, h2, h3 {
+    color: #2B5573;
+    margin-bottom: 5px;
+}
+
+ul {
+    list-style-image: url("/images/list-style-image.png");
+}
+
+pre {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    overflow: auto;
+    width: auto;
+    padding: 5px;
+    width: 650px!ie7;
+    border: 1px solid gray;
+}    
+
+em {
+    color: #2B5573;
+}
+
+div#navigation {
+    background: #EEE none repeat scroll 0% 0%;
+}
+
+div#navigation a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+code {
+    color: #2B5573;
+}
+
+/* contacts page */
+/* ---------------------------------------------------------------------- */
+
+.contacts th {
+    padding-right: 25px;
+    text-align:right;
+    vertical-align:top;
+}    
+
+/* link boxes */
+/* ---------------------------------------------------------------------- */
+
+div.links {
+    background-color: #F5F5F5;
+    border: 1px solid #F1F1F1;
+    min-height: 20px;
+}
+
+.links a {
+    font-style: normal;
+    margin-right: 15px;
+    text-decoration: none;
+    color: #555;        
+}
+
+.links a:hover {
+    color: #2B5573;
+    text-decoration: underline;
+}    
+
+/* software page */
+/* ---------------------------------------------------------------------- */
+
+.software {
+    margin-bottom: 30px;
+}    
+.software .title {
+    color: #2B5573;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.software .attributes {
+    float:right;
+}
+
+.software .attributes a {
+    font-style: normal;
+    margin-left: 10px;
+    margin-right: 0px;
+    text-decoration: none;
+    color: #555;        
+}
+
+.software .attributes a:hover {
+    color: #2B5573;
+    text-decoration: underline;
+}
+
+
+.software .abstract p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+
+/* publication page */
+/* ---------------------------------------------------------------------- */
+
+div.publication div, div.publication pre {
+    padding-left:10px;
+}    
+
+.tagcloud {
+    margin-top:50px;
+    margin-bottom:30px;    
+    margin-left:50px;
+    margin-right:50px;
+    text-align:center;
+}
+
+.tagcloud a {
+    text-decoration:none;
+    margin-left:5px;
+    margin-right:5px;
+    font-style: normal;    
+    text-transform: uppercase;    
+}
+
+.tagcloud a:hover {
+    text-decoration:underline;
+}
+
+div.publication {
+    padding-top: 15px;
+}    
+div.publication-author {
+    padding-top: 15px;
+}
+
+div.publication-image {
+    float: left;
+    padding-left:0px !important;
+    border:1px solid lightgray;
+    margin-right:20px;
+}
+
+div.publication-copyright {
+    font-size:70%;   
+    text-transform: uppercase;
+}
+
+pre.publication-bibtex {
+}
+
+div#biblink{
+    float: right;
+    margin-top: -30px;
+}
+
+div#biblink a {
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+    
+/* CV */
+/* ---------------------------------------------------------------------- */
+
+.cv .date {
+    float:right;
+}
+
+.cv div#pdflink {
+    float: right;
+    margin-top: -45px;
+}
+
+/* links */
+/* ---------------------------------------------------------------------- */
+
+.pdf-link {
+    background: transparent url("/images/pdf.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.github-link {
+    background: transparent url("/images/github-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.hackage-link {
+    background: transparent url("/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.haskell-link {
+    background: transparent url("/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.ocaml-link {
+    background: transparent url("/images/ocaml-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+
+.external-link {
+    background: transparent url("/images/home.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.mit-link {
+    background: transparent url("/images/mit.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.lgpl-link {
+    background: transparent url("/images/lgpl.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.arxiv-link {
+    background: transparent url("/images/arxiv-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.paper-link {
+    background: transparent url("/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.bib-link {
+    background: transparent url("/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
+.doi-link {
+    background: transparent url("/images/doi-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}

@@ -1,0 +1,25 @@
+<div class="software">
+  <span class="title">$title$</span>
+  <div class="attributes">
+    <script>plangLink("$language$");</script>
+    <script>licenseLink("$license$");</script>    
+  </div>
+  <div class="abstract">
+    $body$
+  </div>
+  <div class="links">
+    $if(external)$
+    <a class="external-link link" href="$external$">Homepage</a>
+    $endif$
+    $if(github)$
+    <a class="github-link link" href="http://github.com/$github$">GitHub</a>
+    $endif$
+    $if(hackage)$
+    <a class="hackage-link link" href="http://hackage.haskell.org/package/$hackage$">Hackage</a>
+    $endif$ 
+    $if(paper)$
+    <a class="paper-link link" href="/papers/$paper$.html">System description</a>
+    $endif$   
+  </div>
+</div>
+

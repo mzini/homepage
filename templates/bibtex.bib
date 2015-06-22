@@ -1,0 +1,40 @@
+$if(isArticle)$
+@article{$bibid$,
+  author      = {$authors$},
+  title	      = {{$title$}},
+  journal     = {{$journal$}},
+  volume      = $volume$,
+  year 	      = $year$,
+  pages	      = {$pages$}
+}$endif$$if(isInProceeding)$
+@inproceedings{$bibid$,
+  author      = {$authors$},
+  title	      = {{$title$}},
+  booktitle   = {{$booktitle$}},
+  series      = {{$series$}},
+  volume      = $volume$,
+  publisher   = {{$publisher$}},
+  year 	      = $year$,
+  pages	      = {$pages$}
+}$endif$$if(isTechreport)$
+@techreport{$bibid$,
+  author      = {$authors$},
+  title	      = {{$title$}},
+  institution = {{$institution$}},
+  year 	      = $year$
+}
+$endif$$if(isPhdThesis)$
+@phdthesis{$bibid$,
+  author      = {$authors$},
+  title	      = {{$title$}},
+  school      = {{$school$}},
+  year 	      = $year$
+}
+$endif$$if(isMastersThesis)$
+@phdthesis{$bibid$,
+  author      = {$authors$},
+  title	      = {{$title$}},
+  school      = {{$school$}},
+  year 	      = $year$
+}
+$endif$

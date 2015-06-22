@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <title>$title$</title>
+
+    <!-- Stylesheets. -->
+    <link rel="stylesheet" type="text/css" href="/css/ma.css" />
+    <!-- Metadata. -->
+    <meta name="description" content="Home page of Martin Avanzini."/>
+
+    <script type="text/javascript">
+    function plangLink(which) {
+	switch(which.toLowerCase()) {
+        case "haskell":
+            document.write('<a class="haskell-link link" href="http://haskell.org">Haskell</a>');
+	    break;
+        case "ocaml":
+            document.write('<a class="ocaml-link link" href="http://ocaml.org">OCaml</a>');
+	    break;
+        default:
+	    document.write(which);
+        }
+    };
+    function licenseLink(which) {
+	switch(which.toLowerCase()) {
+        case "mit":
+            document.write('<a class="mit-link" href="http://opensource.org/licenses/MIT">MIT</a>');
+	    break;
+        case "lgpl":
+            document.write('<a class="lgpl-link" href="https://www.gnu.org/copyleft/lesser.html">LGPL</a>');
+	    break;
+        default:
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id ="navigation">
+      <h1>Site</h1>
+      <p>
+      <a href="/">Home</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/software.html">Software</a>      
+      <a href="/contact.html">Contact</a>
+      <a href="/cv.html">CV</a>
+      </p>
+      <h1>Links</h1>
+      <p>
+      <a href="http://github.com/mzini">GitHub</a>
+      <a href="https://www.researchgate.net/profile/Martin_Avanzini">Research Gate</a>
+      </p>
+      <h1>Groups</h1>
+      <p>
+      <a href="http://cbr.uibk.ac.at">CBR @ UIBK</a>
+      <a href="http://cbr.uibk.ac.at">CL @ UIBK</a>
+      </p>
+    </div>
+
+    $body$
+  </body>
+</html>
