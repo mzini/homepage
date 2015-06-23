@@ -14,6 +14,7 @@
       <a class="pdf-link link" href="/papers/$bibid$.pdf">Manuscript</a>
       $if(arxiv)$<a class="pdf-link link" href="http://arxiv.org/pdf/$arxiv$">Techreport</a>$endif$
       $if(slides)$<a class="pdf-link link" href="/slides/$slides$">Slides</a>$endif$
+      <a class="bib-link link" href="/papers/$bibid$.bib">BibTex</a>
       <span style="float:right">
 	$if(doi)$<a class="doi-link link" href="http://dx.doi.org/$doi$">electronic edition</a>$endif$
         $if(arxiv)$<a class="arxiv-link link" href="http://arxiv.org/abs/$arxiv$">ArXiv</a>$endif$
@@ -21,9 +22,5 @@
     </div>
   </p>
   <h2>Categories</h2>
-  <p>
-    $theTags$
-  </p>
-  <h2>BibTex</h2>
-    <pre class="publication-bibtex">$partial("templates/bibtex.bib")$</pre>
+  <p>$theTags$</p>
 </div>

@@ -4,11 +4,9 @@ webpage: http://cl-informatik.uibk.ac.at
 email: martin.avanzini@uibk.ac.at
 address: Schnatzenbichl 3, A-6063 Rum
 ---
-
-\newcommand{\HL}[1]{\hfill{\em{#1}}\newline}
-
+\newcommand{\HL}[1]{\hfill\textit{#1}\newline}
 \define{DATE}{$if(html)$<span class="date">#1</span><br></br>$endif$\HL{#1}}
-\define{BR}{</br>\newline}
+\define{BR}{$if(html)$</br>$endif$\newline}
 
 # Research Interests {-}
 
@@ -49,9 +47,9 @@ $endfor$
 
 # Scientific Activities {-}
 
-- **PC member.** \DATE{2014}
+- **PC member.** \DATE{2014} 
   [5th Workshop on Developments in Implicit Computational Complexity](http://dice14.tcs.ifi.lmu.de/), Grenoble, France. 
-- **Invited speaker.** \DATE{2013}
+- **Invited speaker.** \DATE{2013} 
   [15th International Workshop on Logic and Computational Complexity](http://www.cs.swansea.ac.uk/lcc2014/), Torino, Italy. 
 - **Invited speaker.** \DATE{2013} 
   [3rd Workshop on Proof Theory and Rewriting](http://www.jaist.ac.jp/~hirokawa/pr2013/), Kanazawa, Japan. 

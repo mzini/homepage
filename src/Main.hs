@@ -20,7 +20,7 @@ import           Data.Time.Format              (formatTime, parseTimeM, defaultT
 
 config :: Configuration
 config = defaultConfiguration
-    { deployCommand = "scp -R _site/* csae249@uibk.ac.at:homepage" }
+    { deployCommand = "scp -r _site/* csae2496@colo1-c703.uibk.ac.at:/home/www/users/zini/" }
 
 ----------------------------------------------------------------------
 -- misc
@@ -112,7 +112,8 @@ xelatex item = do
 
 gpp :: Item String -> Compiler (Item String)
 gpp = withItemBody (unixFilter "gpp" ["-T"])
-  
+
+data MacroVersion = HtmlMacros | LaTeXMacros | GlobalMacros deriving Show
 
 pdfToPng :: FilePath -> Compiler (Item TmpFile)
 pdfToPng pdf = do
@@ -170,7 +171,6 @@ publicationContext :: Tags -> BibFile -> Context String
 publicationContext tags biblio = 
   field "bibid" (return . getBibId)
   <> bibTextField "entrytype" (Just . entryType)
-  <> bibTextField "bibtex" (Just . entryToString)
   -- type
   <> bibBoolField "isArticle" isArticle
   <> bibBoolField "isInProceeding" isInProceeding
@@ -267,7 +267,7 @@ publicationListPdfCompiler tags biblio = do
 bibliographyCompiler :: Tags -> BibFile -> Compiler (Item String)
 bibliographyCompiler tags biblio = do
   pubs <- sortByBibField biblio year =<< loadPublications
-  getResourceBody >>= applyAsTemplate (publicationListContext tags biblio pubs)
+  getResourceBody >>= applyAsTemplate (publicationListContext tags biblio pubs) >>= gpp
 
 
 ----------------------------------------------------------------------
@@ -277,12 +277,10 @@ cvPandocCompiler :: Bool -> Compiler (Item String)
 cvPandocCompiler html = do
   projects <- sortByDate "end" =<< loadProjects
   let 
-   htmlField = boolField "html" (const html)
-   ctx = listField "projects" (projectContext <> htmlField) (return projects)                     
-            <> htmlField <> defaultContext
-  getResourceBody
-   >>= gpp
-   >>= applyAsTemplate ctx
+   ctx = listField "projects" (projectContext) (return projects)
+         <> boolField "html" (const html)
+         <> defaultContext
+  getResourceBody >>= gpp >>= applyAsTemplate ctx
 
 cvCompiler :: Compiler (Item String)           
 cvCompiler = 
@@ -338,7 +336,7 @@ main = hakyllWith config $ do
         
     match "css/*" $ do
       route idRoute
-      compile compressCssCompiler
+      compile $ compressCssCompiler
 
     match "templates/*" $ compile templateCompiler
 
@@ -351,15 +349,18 @@ main = hakyllWith config $ do
         route   $ setExtension "png"
         compile $ getResourceFilePath >>= pdfToPng
 
+    match "papers/*.md" $ version "bibtex" $ do
+        route   $ setExtension ".bib"    
+        compile $
+          getResourceBody 
+           >>= gpp
+           >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags biblio)
+           
+
     match "papers/*.md" $ do
         route   $ setExtension ".html"
         compile $ publicationCompiler tags biblio 
         
-    -- metadata files
-    match "projects/*.md" $ 
-        compile $ metadataCompiler "templates/project.html"
-
-    -- metadata files
     match "projects/*.md" $ 
         compile $ metadataCompiler "templates/project.html"
 

@@ -99,7 +99,7 @@ h1, h2, h3 {
 }
 
 ul {
-    list-style-image: url("/images/list-style-image.png");
+    list-style-image: url("http://cl-informatik.uibk.ac.at/users/zini/images/list-style-image.png");
 }
 
 pre {
@@ -271,62 +271,62 @@ div#biblink a {
 /* ---------------------------------------------------------------------- */
 
 .pdf-link {
-    background: transparent url("/images/pdf.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/pdf.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .github-link {
-    background: transparent url("/images/github-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/github-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .hackage-link {
-    background: transparent url("/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .haskell-link {
-    background: transparent url("/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/haskell-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .ocaml-link {
-    background: transparent url("/images/ocaml-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/ocaml-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 
 .external-link {
-    background: transparent url("/images/home.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/home.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .mit-link {
-    background: transparent url("/images/mit.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/mit.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .lgpl-link {
-    background: transparent url("/images/lgpl.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/lgpl.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .arxiv-link {
-    background: transparent url("/images/arxiv-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/arxiv-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .paper-link {
-    background: transparent url("/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .bib-link {
-    background: transparent url("/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/paper.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
 
 .doi-link {
-    background: transparent url("/images/doi-logo.png") no-repeat scroll 0px 50% / 18px 18px;
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/doi-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
 }
