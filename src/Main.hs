@@ -244,7 +244,7 @@ publicationListContext tags biblio pubs =
 
 publicationListCompilerForTag :: String -> Pattern -> Tags -> BibFile -> Compiler (Item String)
 publicationListCompilerForTag string pattern tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadAll pattern
+  pubs <- sortByBibField biblio year =<< loadAll (pattern .&&. hasNoVersion)
   let ctx = constField "title" ("List of Publications: " ++ string)
             <> publicationListContext tags biblio pubs
   makeItem ""
@@ -336,7 +336,7 @@ main = hakyllWith config $ do
         
     match "css/*" $ do
       route idRoute
-      compile $ compressCssCompiler
+      compile compressCssCompiler
 
     match "templates/*" $ compile templateCompiler
 
