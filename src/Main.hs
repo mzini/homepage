@@ -169,7 +169,8 @@ biblioField biblio f i = lookupById (getBibId i) biblio >>= f
 
 publicationContext :: Tags -> BibFile -> Context String        
 publicationContext tags biblio = 
-  field "bibid" (return . getBibId)
+  metadataField
+  <> field "bibid" (return . getBibId)
   <> bibTextField "entrytype" (Just . entryType)
   -- type
   <> bibBoolField "isArticle" isArticle
@@ -192,7 +193,6 @@ publicationContext tags biblio =
   <> bibTextField "note" note
   <> bibTextField "pages" pages
   <> tagsField "theTags" tags
-  <> metadataField
   <> defaultContext  
 
   where 
@@ -353,9 +353,8 @@ main = hakyllWith config $ do
         route   $ setExtension ".bib"    
         compile $
           getResourceBody 
-           >>= gpp
            >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags biblio)
-           
+           >>= gpp
 
     match "papers/*.md" $ do
         route   $ setExtension ".html"

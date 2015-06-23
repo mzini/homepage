@@ -50,6 +50,7 @@ div#navigation h1 {
 
 div#content {
     margin: 0px 0px 0px 180px;
+    padding-right: 30px;
     width: 844px;
 }
 
