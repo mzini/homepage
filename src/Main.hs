@@ -210,7 +210,7 @@ publicationContext tags biblio =
 
 
 loadPublications :: Compiler [Item String]
-loadPublications = loadAll "papers/*.md"
+loadPublications = loadAll ("papers/*.md" .&&. hasNoVersion)
 
 -- loadPublicationsByType :: String -> Compiler [Item String]
 -- loadPublicationsByType which =
@@ -280,7 +280,7 @@ cvPandocCompiler html = do
    ctx = listField "projects" (projectContext) (return projects)
          <> boolField "html" (const html)
          <> defaultContext
-  getResourceBody >>= gpp >>= applyAsTemplate ctx
+  getResourceBody >>= applyAsTemplate ctx >>= gpp
 
 cvCompiler :: Compiler (Item String)           
 cvCompiler = 
@@ -303,8 +303,8 @@ cvPdfCompiler =
 
 indexCompiler :: Tags -> BibFile -> Compiler (Item String)
 indexCompiler tags biblio = do
-   pubs <- fmap (take 3 . reverse) . sortByBibField biblio year =<< loadPublications
-   events <- reverse <$> (sortByDate "start" =<< upcomingEvents)
+   pubs <- fmap (take 3) . sortByBibField biblio year =<< loadPublications
+   events <- sortByDate "start" =<< upcomingEvents
    projects <- sortByDate "end" =<< loadProjects
    templateAsHtmlContent 
          (  listField "publications" (publicationContext tags biblio)  (return pubs) 
