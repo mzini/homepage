@@ -80,12 +80,6 @@ sortByDate which = sortByItems (getFieldUTC which . itemIdentifier)
 sortByBibField :: Ord b => BibFile -> (BibEntry -> Maybe b) -> [Item a] -> Compiler [Item a]
 sortByBibField biblio which = sortByItems (return . biblioField biblio which)
 
--- sortByYear :: [Item String] -> Compiler [Item String]
--- sortByYear = sortByItems (getFieldUTC "year") where
-  -- get id = do 
-  --   myear <- getMetadataField id "year"
-  --   return $ fromMaybe (0 :: Int) (myear >>= readMaybe)
-
 ----------------------------------------------------------------------
 -- specific compilers
 pandocToTex :: Item String -> Compiler (Item String)
@@ -206,7 +200,7 @@ publicationContext tags biblio =
       getField i = 
         case biblioField biblio f i of 
          Just e -> return e
-         Nothing -> empty
+         Nothing -> fail $ unwords ["no bibtex field", t, "for entry", getBibId i]
          
       -- return (fromMaybe (error $ unwords ["no bibtex field", t, "for entry", getBibId i]) 
       --                      (biblioField biblio f i))
