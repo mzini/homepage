@@ -1,22 +1,20 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main (main) where
 
-import Bibtex
+import           Bibtex
 
-import Data.List (sortBy)
-import Data.Ord (comparing)
-import Data.Maybe (isJust)
-import           Data.Maybe         (fromMaybe)
-import           Data.Monoid         (mconcat, (<>))
-import           System.Process      (system,readProcess)
+import           Control.Monad ((>=>), void,forM, msum, filterM)
+import           Data.List (sortBy)
 import qualified Data.Map as M
-import           System.FilePath     (addExtension, replaceExtension, takeDirectory, takeBaseName)
-import qualified Text.Pandoc         as Pandoc
-import Control.Monad ((>=>), void,forM, foldM, msum, filterM)
-import Control.Applicative (empty)
+import           Data.Maybe (fromMaybe)
+import           Data.Monoid ((<>))
+import           Data.Ord (comparing)
+import           Data.Time.Clock (UTCTime (..), getCurrentTime)
+import           Data.Time.Format (formatTime, parseTimeM, defaultTimeLocale)
 import           Hakyll
-import           Data.Time.Clock               (UTCTime (..), getCurrentTime)
-import           Data.Time.Format              (formatTime, parseTimeM, defaultTimeLocale)
+import           System.FilePath (addExtension, replaceExtension, takeDirectory, takeBaseName)
+import           System.Process (system)
+import qualified Text.Pandoc as Pandoc
 
 config :: Configuration
 config = defaultConfiguration
@@ -24,6 +22,9 @@ config = defaultConfiguration
 
 ----------------------------------------------------------------------
 -- misc
+
+system_ :: [String] -> IO ()
+system_ = void . system . unwords
 
 getFieldUTC :: MonadMetadata m
            => String            -- ^ Field
@@ -48,22 +49,6 @@ getFieldUTC fld id' = do
         , "%Y"        
         ]
 
-wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
-wrapHtmlContent ctx = 
-  loadAndApplyTemplate "templates/content.html" ctx
-  >=> loadAndApplyTemplate "templates/default.html" ctx
-  >=> relativizeUrls
-
-templateAsHtmlContent :: Context String -> Compiler (Item String)
-templateAsHtmlContent ctx = 
-  getResourceBody 
-   >>= applyAsTemplate ctx
-   >>= wrapHtmlContent (metadataField <> defaultContext)
-
-metadataCompiler :: Identifier -> Compiler (Item String)
-metadataCompiler template = 
-    pandocCompiler 
-    >>= loadAndApplyTemplate template (metadataField <> defaultContext)
 ---------------------------------------------------------------------- 
 -- sorting
 
@@ -81,7 +66,29 @@ sortByBibField :: Ord b => BibFile -> (BibEntry -> Maybe b) -> [Item a] -> Compi
 sortByBibField biblio which = sortByItems (return . biblioField biblio which)
 
 ----------------------------------------------------------------------
+-- combiler combinators
+
+wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
+wrapHtmlContent ctx = 
+  loadAndApplyTemplate "templates/content.html" ctx
+  >=> loadAndApplyTemplate "templates/default.html" ctx
+  >=> relativizeUrls
+
+templateAsHtmlContent :: Context String -> Compiler (Item String)
+templateAsHtmlContent ctx = 
+  getResourceBody 
+   >>= applyAsTemplate ctx
+   >>= wrapHtmlContent (metadataField <> defaultContext)
+
+
+----------------------------------------------------------------------
 -- specific compilers
+
+metadataCompiler :: Identifier -> Compiler (Item String)
+metadataCompiler template = 
+    pandocCompiler 
+    >>= loadAndApplyTemplate template (metadataField <> defaultContext)
+
 pandocToTex :: Item String -> Compiler (Item String)
 pandocToTex str =
   fmap (Pandoc.writeLaTeX Pandoc.def {Pandoc.writerTeXLigatures = False}) <$> readPandoc str
@@ -98,32 +105,17 @@ xelatex item = do
   makeItem $ TmpFile (replaceExtension tex "pdf")
     where 
       biber tex = 
-          void $ system $ unwords ["biber"
-                                  , "--output-directory"
-                                  , takeDirectory tex
-                                  , takeBaseName tex
-                                  , "2>&1", ">/dev/zero" ]
+          system_ ["biber", "--output-directory", takeDirectory tex, takeBaseName tex, "2>&1", ">/dev/zero" ]
       latex tex = 
-          void $ system $ unwords ["xelatex", "-halt-on-error"
-                                  , "-output-directory"
-                                  , takeDirectory tex
-                                  , tex
-                                  , "2>&1", ">/dev/zero" ]
+          system_ ["xelatex", "-halt-on-error", "-output-directory", takeDirectory tex, tex, "2>&1", ">/dev/zero" ]
 
 gpp :: Item String -> Compiler (Item String)
 gpp = withItemBody (unixFilter "gpp" ["-T"])
 
-data MacroVersion = HtmlMacros | LaTeXMacros | GlobalMacros deriving Show
-
 pdfToPng :: FilePath -> Compiler (Item TmpFile)
 pdfToPng pdf = do
   TmpFile tmp <- newTmpFile "converted"
-  unsafeCompiler $ void $ system $  unwords ["pdftoppm"
-                                            , "-singlefile" 
-                                            , "-png"
-                                            , pdf
-                                            , tmp
-                                            , "2>/dev/null"]
+  unsafeCompiler $ system_ ["pdftoppm", "-singlefile" , "-png", pdf, tmp, "2>/dev/null"]
   makeItem $ TmpFile (addExtension tmp "png")
 
 ----------------------------------------------------------------------
@@ -137,6 +129,16 @@ upcomingEvents = do
   now <- unsafeCompiler getCurrentTime
   loadEvents 
     >>= filterM (\ item -> (>= now) <$> getFieldUTC "start" (itemIdentifier item))
+
+eventContext :: Context String
+eventContext = 
+ metadataField 
+ <> defaultContext 
+ <> field "when" (\ item -> do 
+       let i = itemIdentifier item
+       start <- formatTime defaultTimeLocale "%d %B " <$> getFieldUTC "start" i
+       end <-   formatTime defaultTimeLocale "%d %B, %Y" <$> getFieldUTC "end" i
+       return (start ++ " – " ++ end))
 
 ----------------------------------------------------------------------
 -- projects
@@ -201,9 +203,6 @@ publicationContext tags biblio =
         case biblioField biblio f i of 
          Just e -> return e
          Nothing -> fail $ unwords ["no bibtex field", t, "for entry", getBibId i]
-         
-      -- return (fromMaybe (error $ unwords ["no bibtex field", t, "for entry", getBibId i]) 
-      --                      (biblioField biblio f i))
     bibIntField t f = bibTextField t (fmap show . f)
     bibBoolField t f = boolField t getField where
       getField i = fromMaybe False (f <$> lookupById (getBibId i) biblio)
@@ -211,11 +210,6 @@ publicationContext tags biblio =
 
 loadPublications :: Compiler [Item String]
 loadPublications = loadAll ("papers/*.md" .&&. hasNoVersion)
-
--- loadPublicationsByType :: String -> Compiler [Item String]
--- loadPublicationsByType which =
---   loadPublications
---   >>= filterM (\ item -> (== which) <$> getMetadataField' (itemIdentifier item) "type")
 
 publicationCompiler :: Tags -> BibFile -> Compiler (Item String)
 publicationCompiler tags biblio = 
@@ -277,15 +271,14 @@ cvPandocCompiler :: Bool -> Compiler (Item String)
 cvPandocCompiler html = do
   projects <- sortByDate "end" =<< loadProjects
   let 
-   ctx = listField "projects" (projectContext) (return projects)
+   ctx = listField "projects" projectContext (return projects)
          <> boolField "html" (const html)
          <> defaultContext
   getResourceBody >>= applyAsTemplate ctx >>= gpp
 
 cvCompiler :: Compiler (Item String)           
 cvCompiler = 
-    cvPandocCompiler True
-     >>= renderPandoc
+    cvPandocCompiler True >>= renderPandoc
      >>= return . fmap demoteHeaders                    
      >>= loadAndApplyTemplate "templates/cv.html" defaultContext
      >>= wrapHtmlContent defaultContext
@@ -304,11 +297,11 @@ cvPdfCompiler =
 indexCompiler :: Tags -> BibFile -> Compiler (Item String)
 indexCompiler tags biblio = do
    pubs <- fmap (take 3) . sortByBibField biblio year =<< loadPublications
-   events <- sortByDate "start" =<< upcomingEvents
+   events <- reverse <$> (sortByDate "start" =<< upcomingEvents)
    projects <- sortByDate "end" =<< loadProjects
    templateAsHtmlContent 
          (  listField "publications" (publicationContext tags biblio)  (return pubs) 
-         <> listField "events"       (metadataField <> defaultContext) (return events) 
+         <> listField "events"       eventContext                      (return events) 
          <> listField "projects"     projectContext                    (return projects)                     
          <> defaultContext )
 
@@ -364,7 +357,9 @@ main = hakyllWith config $ do
         compile $ metadataCompiler "templates/project.html"
 
     match "events/*.md" $ 
-        compile $ metadataCompiler "templates/event.html"
+        compile $ 
+         pandocCompiler 
+          >>= loadAndApplyTemplate "templates/event.html" eventContext
 
     match "software/*.md" $
         compile $ metadataCompiler "templates/software.html"
