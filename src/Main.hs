@@ -20,7 +20,7 @@ import           Data.Time.Format              (formatTime, parseTimeM, defaultT
 
 config :: Configuration
 config = defaultConfiguration
-    { deployCommand = "scp -r _site/* csae2496@colo1-c703.uibk.ac.at:/home/www/users/zini/" }
+    { deployCommand = "rsync -avz -e ssh ~/sources/homepage/_site/ csae2496@colo1-c703.uibk.ac.at:/home/www/users/zini/" }
 
 ----------------------------------------------------------------------
 -- misc
