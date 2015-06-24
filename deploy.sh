@@ -4,6 +4,7 @@ echo "1. git upload ..."
 echo "----------------------------------------------------------------------"
 git add events/* projects/* papers/* software/*
 git commit -a -m "content update at `date`"
+git push
 
 echo "2. compiling ..."
 echo "----------------------------------------------------------------------"
