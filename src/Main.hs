@@ -130,6 +130,12 @@ upcomingEvents = do
   loadEvents 
     >>= filterM (\ item -> (>= now) <$> getFieldUTC "start" (itemIdentifier item))
 
+pastEvents :: Compiler [Item String]
+pastEvents = do 
+  now <- unsafeCompiler getCurrentTime
+  loadEvents 
+    >>= filterM (\ item -> (< now) <$> getFieldUTC "end" (itemIdentifier item))
+
 eventContext :: Context String
 eventContext = 
  metadataField 
@@ -298,10 +304,12 @@ indexCompiler :: Tags -> BibFile -> Compiler (Item String)
 indexCompiler tags biblio = do
    pubs <- fmap (take 3) . sortByBibField biblio year =<< loadPublications
    events <- reverse <$> (sortByDate "start" =<< upcomingEvents)
+   events' <- sortByDate "end" =<< pastEvents
    projects <- sortByDate "end" =<< loadProjects
    templateAsHtmlContent 
          (  listField "publications" (publicationContext tags biblio)  (return pubs) 
          <> listField "events"       eventContext                      (return events) 
+         <> listField "pastEvents"   eventContext                      (return events')          
          <> listField "projects"     projectContext                    (return projects)                     
          <> defaultContext )
 

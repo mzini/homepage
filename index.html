@@ -30,13 +30,6 @@ title: About me
 </ul>  
 <div style="clear: both"></div>
 
-<h2> Upcoming Events </h2>
-<ul>
-  $for(events)$
-  <li><p>$partial("templates/event.html")$</p></li>
-  $endfor$
-</ul>
-
 <h2> Recent Publications </h2>
 <ul>
     $for(publications)$
@@ -45,6 +38,20 @@ title: About me
 </ul>
 
 <a href="publications.html">all...</a>
+
+<h2> Upcoming Events </h2>
+<ul>
+  $for(events)$
+  <li><p>$partial("templates/event.html")$</p></li>
+  $endfor$
+</ul>
+
+<h2> Past Events </h2>
+<ul>
+  $for(pastEvents)$
+  <li><p>$partial("templates/event.html")$</p></li>
+  $endfor$
+</ul>
 
 <h2> Projects </h2>
 <ul>
