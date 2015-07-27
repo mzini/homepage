@@ -3,6 +3,7 @@ title: Higher Order Complexity Analysis (HOCA)
 external: http://cbr.uibk.ac.at/tools/hoca
 license: MIT
 language: haskell
+paper: ADM:ICFP:15
 github: ComputationWithBoundedResources/hoca
 ---
 
