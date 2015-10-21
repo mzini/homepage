@@ -1,7 +1,7 @@
 ---
 title: Tyrolean Complexity Tool (TCT)
 external: http://cl-informatik.uibk.ac.at/software/tct
-license: LGPL
+license: BSD
 language: haskell
 paper: AM:RTA:13b
 github: mzini/tct

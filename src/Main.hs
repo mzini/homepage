@@ -350,14 +350,14 @@ main = hakyllWith config $ do
         route   $ setExtension "png"
         compile $ getResourceFilePath >>= pdfToPng
 
-    match "papers/*.md" $ version "bibtex" $ do
+    match "papers/*.md" $ version "bibtex" $ rulesExtraDependencies [strings,references] $ do
         route   $ setExtension ".bib"    
         compile $
           getResourceBody 
            >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags biblio)
            >>= gpp
 
-    match "papers/*.md" $ do
+    match "papers/*.md" $ rulesExtraDependencies [strings,references] $ do
         route   $ setExtension ".html"
         compile $ publicationCompiler tags biblio 
         

@@ -312,6 +312,11 @@ div#biblink a {
     padding-left: 26px;
 }
 
+.bsd-link {
+    background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/bsd.jpg") no-repeat scroll 0px 50% / 18px 18px;
+    padding-left: 26px;
+}
+
 .arxiv-link {
     background: transparent url("http://cl-informatik.uibk.ac.at/users/zini/images/arxiv-logo.png") no-repeat scroll 0px 50% / 18px 18px;
     padding-left: 26px;
