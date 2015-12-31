@@ -2,6 +2,7 @@
 type: draft
 tags: Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
 copyright: Elsevier
+accepted: Information and Computation
 ---
 
 In this paper we present a combination framework for the automated
