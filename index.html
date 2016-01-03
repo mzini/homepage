@@ -39,12 +39,14 @@ title: About me
 
 <a href="publications.html">all...</a>
 
+$if(hasUpcomingEvents)$
 <h2> Upcoming Events </h2>
 <ul>
-  $for(events)$
+  $for(upcomingEvents)$
   <li><p>$partial("templates/event.html")$</p></li>
   $endfor$
 </ul>
+$endif$
 
 <h2> Past Events </h2>
 <ul>

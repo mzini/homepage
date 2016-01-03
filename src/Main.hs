@@ -307,10 +307,11 @@ indexCompiler tags biblio = do
    events' <- sortByDate "end" =<< pastEvents
    projects <- sortByDate "end" =<< loadProjects
    templateAsHtmlContent 
-         (  listField "publications" (publicationContext tags biblio)  (return pubs) 
-         <> listField "events"       eventContext                      (return events) 
-         <> listField "pastEvents"   eventContext                      (return events')          
-         <> listField "projects"     projectContext                    (return projects)                     
+         (  listField "publications"       (publicationContext tags biblio)  (return pubs)
+         <> boolField "hasUpcomingEvents" (const (not (null events)))
+         <> listField "upcomingEvents"    eventContext                      (return events) 
+         <> listField "pastEvents"         eventContext                      (return events')          
+         <> listField "projects"           projectContext                    (return projects)                     
          <> defaultContext )
 
 ----------------------------------------------------------------------
