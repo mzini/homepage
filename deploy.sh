@@ -1,6 +1,7 @@
 #!/bin/bash
 
-$HOMEPAGE=dist/build/homepage
+HOMEPAGE=dist/build/homepage
+
 echo "1. git upload ..."
 echo "----------------------------------------------------------------------"
 git add events/* projects/* papers/* software/*
