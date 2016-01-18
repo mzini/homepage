@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOMEPAGE=dist/build/homepage
+HOMEPAGE=dist/build/homepage/homepage
 
 echo "1. git upload ..."
 echo "----------------------------------------------------------------------"
