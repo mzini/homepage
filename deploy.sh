@@ -1,5 +1,6 @@
 #!/bin/bash
 
+$HOMEPAGE=dist/build/homepage
 echo "1. git upload ..."
 echo "----------------------------------------------------------------------"
 git add events/* projects/* papers/* software/*
@@ -8,10 +9,10 @@ git push
 
 echo "2. compiling ..."
 echo "----------------------------------------------------------------------"
-homepage build
+$HOMEPAGE build
 
 echo "3. deploying ..."
 echo "----------------------------------------------------------------------"
-homepage deploy
+$HOMEPAGE deploy
 
 
