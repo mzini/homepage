@@ -12,7 +12,7 @@ import           Data.Ord (comparing)
 import           Data.Time.Clock (UTCTime (..), getCurrentTime)
 import           Data.Time.Format (formatTime, parseTimeM, defaultTimeLocale)
 import           Hakyll
-import           System.FilePath (addExtension, replaceExtension, takeDirectory, takeBaseName)
+import           System.FilePath (addExtension, replaceExtension, takeDirectory, takeBaseName, (</>))
 import           System.Process (system)
 import qualified Text.Pandoc as Pandoc
 
@@ -96,18 +96,29 @@ pandocToTex str =
 xelatex :: Item String -> Compiler (Item TmpFile)
 xelatex item = do
   TmpFile tex <- newTmpFile "tmp.tex"
+  bib <- loadBody "bibliography.bib"
   unsafeCompiler $ do
     writeFile tex (itemBody item)
+    writeFile (takeDirectory tex </> "bibliography.bib") bib
+    -- system_ ["./latex.sh", takeDirectory tex, takeBaseName tex]
     latex tex
     biber tex
     latex tex
     latex tex
   makeItem $ TmpFile (replaceExtension tex "pdf")
-    where 
-      biber tex = 
-          system_ ["biber", "--output-directory", takeDirectory tex, takeBaseName tex, "2>&1", ">/dev/zero" ]
+    where
+      biber tex =
+          system_ ["biber"
+                  , "--input-directory", takeDirectory tex
+                  , "--output-directory", takeDirectory tex
+                  , takeBaseName tex
+                  ] -- , "2>&1", ">/dev/zero"
       latex tex = 
-          system_ ["xelatex", "-halt-on-error", "-output-directory", takeDirectory tex, tex, "2>&1", ">/dev/zero" ]
+          system_ ["xelatex"
+                  , "-halt-on-error"
+                  , "-output-directory", takeDirectory tex
+                  , tex
+                  , "2>&1", ">/dev/zero" ]
 
 gpp :: Item String -> Compiler (Item String)
 gpp = withItemBody (unixFilter "gpp" ["-T"])
@@ -264,6 +275,13 @@ publicationListPdfCompiler tags biblio = do
    >>= loadAndApplyTemplate "templates/document.tex" defaultContext
    >>= xelatex   
 
+publicationListTexCompiler :: Tags -> BibFile -> Compiler (Item String)
+publicationListTexCompiler tags biblio = do
+  pubs <- sortByBibField biblio year =<< loadPublications
+  getResourceBody 
+   >>= applyAsTemplate (publicationListContext tags biblio pubs )
+   >>= loadAndApplyTemplate "templates/document.tex" defaultContext   
+
 bibliographyCompiler :: Tags -> BibFile -> Compiler (Item String)
 bibliographyCompiler tags biblio = do
   pubs <- sortByBibField biblio year =<< loadPublications
@@ -320,7 +338,7 @@ main :: IO ()
 main = hakyllWith config $ do
     tags <- buildTags "papers/*" (fromCapture "tags/*.html")
     strings <- makePatternDependency "papers/strings.bib"
-    references <- makePatternDependency "papers/references.bib"    
+    references <- makePatternDependency "papers/references.bib"
     biblio <- rulesExtraDependencies [strings,references] $ preprocess (parseBibFile ["papers/strings.bib", "papers/references.bib"])
 
     -- files etc    
@@ -386,13 +404,17 @@ main = hakyllWith config $ do
         route (setExtension "html")    
         compile (publicationListCompiler tags biblio)
 
-    match "publications.tex" $ do
-        route (setExtension "pdf")
-        compile (publicationListPdfCompiler tags biblio)
-
     match "bibliography.bib" $ do
         route idRoute
         compile (bibliographyCompiler tags biblio)
+
+    match "publications.tex" $ version "pdf" $ do
+        route (setExtension "pdf")
+        compile (publicationListPdfCompiler tags biblio)
+
+    match "publications.tex" $ version "tex" $ do
+        route idRoute
+        compile (publicationListTexCompiler tags biblio)
 
     tagsRules tags $ \ tag pattern -> do 
         route   idRoute

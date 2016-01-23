@@ -2,6 +2,7 @@
 type: draft
 tags: Term Rewriting, Complexity Analysis, Memoization, Predicative Recursion, ICC
 copyright: Elsevier
+accepted: Information and Computation
 ---
 
 We study how the adoption of an evaluation mechanism with sharing

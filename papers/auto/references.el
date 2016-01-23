@@ -3,6 +3,7 @@
  (lambda ()
    (LaTeX-add-bibitems
     "AAGGPRRZ:ENTCS:09"
+    "HPS:POPL:96"
     "Genet:RTA:98"
     "ST:FROCOS:11"
     "Okasaki:JFP:98"
@@ -24,6 +25,7 @@
     "AE:WST:10"
     "AE:DICE:14"
     "ADM:DICE:15"
+    "AMS:TACAS:16"
     "AEM:APLAS:12"
     "AEM:ARXIV:12"
     "AEM:DICE:12"
