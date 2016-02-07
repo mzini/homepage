@@ -1,5 +1,5 @@
 <div class="software">
-  <span class="title">$title$</span>
+  <span class="title"> $if(external)$ <a href="$external$" class="link">$title$</a> $else$ $title$ $endif$ </span>
   <div class="attributes">
     <script>plangLink("$language$");</script>
     <script>licenseLink("$license$");</script>    
@@ -8,6 +8,7 @@
     $body$
   </div>
   <div class="links">
+    <span class="label">Links:</span>
     $if(external)$
     <a class="external-link link" href="$external$">Homepage</a>
     $endif$
