@@ -30,6 +30,7 @@
     "AEM:ARXIV:12"
     "AEM:DICE:12"
     "AEM:RTA:11"
+    "AM:FSCD:16"
     "AEM:WST:12"
     "AG:TCS:00"
     "AM:FLOPS:08"
@@ -244,5 +245,6 @@
     "Z:RTA:97"
     "ZK:RTA:10"
     "contejean:2005"
-    "staples:80")))
+    "staples:80"))
+ :bibtex)
 
