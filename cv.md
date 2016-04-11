@@ -10,11 +10,12 @@ address: Schnatzenbichl 3, A-6063 Rum
 
 # Research Interests {-}
 
-- First and higher-order rewrite systems
-- Implicit computational complexity
-- Automated complexity analysis
-- Proof theory
+- Complexity analysis
 - Functional programming
+- Implicit computational complexity
+- Proof theory
+- Rewriting
+- Static program analysis
 
 # Higher Education {-}
 
