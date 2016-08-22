@@ -1,5 +1,5 @@
 ---
-type: draft
+type: conference
 tags: Program Analysis, Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
 accepted: International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS)
 ---

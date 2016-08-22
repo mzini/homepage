@@ -1,5 +1,5 @@
 ---
-type: draft
+type: conference
 tags: Program Analysis, Graph Rewriting, Complexity Analysis, Runtime Complexity Analysis
 accepted: 1st International Conference on Formal Structures for Computation and Deduction (FSCD)
 ---
