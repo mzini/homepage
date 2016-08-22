@@ -4,6 +4,7 @@
    (LaTeX-add-bibitems
     "AAGGPRRZ:ENTCS:09"
     "HPS:POPL:96"
+    "FFSA:PLDI:98"
     "Genet:RTA:98"
     "ST:FROCOS:11"
     "Okasaki:JFP:98"
