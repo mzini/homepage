@@ -1,21 +1,20 @@
 ---
-title: HOSA: Sized-type inference for higher-order functional programs
+title: Sized-type inference for higher-order functional programs
 ---
-
+# Sized-type inference for higher-order functional programs
 
 HoSA performs inference of sized-types for higher-order functional programs,
 as explained in our paper.
 
 
-# Installation
-## Download
+## Download and installation
 HoSA is open source and can be downloaded from its [github page](https://github.com/mzini/hosa/tree/polymorph).
 
-## Requirements
+### Requirements
 HoSA is implemented in [Haskell](https://www.haskell.org/) and relies on a recent version of the
 [Glasgow Haskell Compiler](https://www.haskell.org/ghc/). 
 
-## Install
+### Install
 The easiest way to install HoSA is via [stack](https://docs.haskellstack.org/en/stable/README/).
 To instal HoSA via stack, navigate to the source distribution folder in a terminal and type:
 
@@ -26,7 +25,7 @@ stack install
 This will install HoSA together with all its requirements.
 
 
-# Usage
+## Usage
 HoSA is invoked by the command line by
 
 ~~~~~~~
