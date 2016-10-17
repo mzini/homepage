@@ -1,10 +1,10 @@
 #!/bin/bash
 
-HOMEPAGE=dist/build/homepage/homepage
+HOMEPAGE=homepage
 
 echo "1. git upload ..."
 echo "----------------------------------------------------------------------"
-git add events/* projects/* papers/* software/*
+git add events/* projects/* papers/* software/**/*
 git commit -a -m "content update at `date`"
 git push
 

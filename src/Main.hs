@@ -169,13 +169,19 @@ projectContext = metadataField <> defaultContext
 ----------------------------------------------------------------------
 -- software
 
-loadSoftware :: Compiler [Item String]
-loadSoftware = loadAll "software/*.md"
+loadLibs :: Compiler [Item String]
+loadLibs = loadAll "software/libraries/*.md"
+
+loadTools :: Compiler [Item String]
+loadTools = loadAll "software/tools/*.md"
 
 softwareListCompiler :: Compiler (Item String)
 softwareListCompiler = do 
-  software <- loadSoftware
-  templateAsHtmlContent (listField "software" (metadataField <> defaultContext) (return software))
+  tools <- loadTools
+  libs <- loadLibs
+  templateAsHtmlContent $
+    listField "tools" (metadataField <> defaultContext) (return tools)
+    <> listField "libs" (metadataField <> defaultContext) (return libs)
 
 -----------------------------------------------------------------------
 -- papers
@@ -384,13 +390,19 @@ main = hakyllWith config $ do
         compile $ metadataCompiler "templates/project.html"
 
     match "events/*.md" $ 
-        compile $ 
-         pandocCompiler 
-          >>= loadAndApplyTemplate "templates/event.html" eventContext
+        compile $ pandocCompiler >>= loadAndApplyTemplate "templates/event.html" eventContext
 
-    match "software/*.md" $
+    match "software/tools/*.md" $
         compile $ metadataCompiler "templates/software.html"
-   
+    match "software/libraries/*.md" $
+        compile $ metadataCompiler "templates/software.html"
+
+    -- hosa page
+
+    match "software/hosa/*.md" $ do
+        route  $ setExtension "html"
+        compile $ pandocCompiler >>= wrapHtmlContent defaultContext
+        
     -- main pages
     match "software.html" $ do
         route idRoute
