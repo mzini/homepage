@@ -120,9 +120,7 @@ What is happening here:
 
   * HoSA then specialises the types of functions to specific call-sites, resulting in a
     /calling-context annotated program/. This enables the size annotation of polymorphic
-    arguments. E.g., above the most general type of 'foldr' has been refined
-
-    to
+    arguments. E.g., above the most general type of 'foldr' has been refined to
 
     ~~~~~~~
     (γ -> L((β,α)) -> L((β,α))) -> L((β,α)) -> L(γ) -> L((β,α))
