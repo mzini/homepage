@@ -1,7 +1,6 @@
 ---
 type: draft
 tags: Term Rewriting, Complexity Analysis, Memoization, Predicative Recursion, ICC
-copyright: Elsevier
 accepted: Information and Computation
 ---
 

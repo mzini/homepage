@@ -2,7 +2,7 @@
 type: conference
 doi: 10.4230/LIPIcs.FSCD.2016.10
 tags: Program Analysis, Graph Rewriting, Complexity Analysis, Runtime Complexity Analysis
-accepted: 1st International Conference on Formal Structures for Computation and Deduction (FSCD)
+copyright: Creative Commons License - ND
 ---
 
 Term rewriting has been used as a formal model to reason about the complexity of logic, functional, and imperative programs.

@@ -4,7 +4,7 @@ title: Sized-type inference for higher-order functional programs
 # Sized-type inference for higher-order functional programs
 
 HoSA performs inference of sized-types for higher-order functional programs,
-as explained in our paper.
+as explained in our recent [ESOP submission](). 
 
 
 ## Download and installation
@@ -15,8 +15,9 @@ HoSA is implemented in [Haskell](https://www.haskell.org/) and relies on a recen
 [Glasgow Haskell Compiler](https://www.haskell.org/ghc/). 
 
 ### Install
-The easiest way to install HoSA is via [stack](https://docs.haskellstack.org/en/stable/README/).
-To instal HoSA via stack, navigate to the source distribution folder in a terminal and type:
+HoSA requires various auxiliary libraries and tools, such as our [GUBS solver](https://github.com/mzini/gubs).
+Thus, the easiest way to install HoSA is via [stack](https://docs.haskellstack.org/en/stable/README/).
+To install HoSA via stack, navigate to the source distribution folder in a terminal and type:
 
 ~~~~~~~
 stack install
@@ -32,7 +33,7 @@ HoSA is invoked by the command line by
 hosa <file>
 ~~~~~~~
 
-where <file> is the functional program that should be analysed.
+where `<file>` is the functional program that should be analysed.
 For additional command line flags, type
 
 ~~~~~~~
@@ -45,6 +46,11 @@ HoSA is still under development and features currently just a very rudimentary
 parser for higher-order programs, see the
 [example folder](https://github.com/mzini/hosa/tree/polymorph/examples)
 for the syntax of input programs.
+
+
+## Issues
+HoSA is still work in progress. For issues and limitations, see the [github issue tracker](https://github.com/mzini/hosa/issues).
+
 
 ## An Example
 
@@ -115,7 +121,7 @@ Sized-type annotated program:
 
 What is happening here:
 
-  * As a first step, HoSA performs standard Hindley Milner type inference on the supplied program.
+  * As a first step, HoSA performs standard Hindley-Milner type inference on the supplied program.
 
   * HoSA then specialises the types of functions to specific call-sites, resulting in a
     /calling-context annotated program/. This enables the size annotation of polymorphic
@@ -132,3 +138,4 @@ What is happening here:
     the depth of the specialisation.
 
   * Finally, on the resulting program sized-type inference is performed. 
+

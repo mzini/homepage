@@ -1,7 +1,7 @@
 ---
 type: conference
 tags: Program Analysis, Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
-accepted: International Conference on Tools and Algorithms for the Construction and Analysis of Systems (TACAS)
+copyright: Springer
 ---
 
 In this paper we present [TCT](http://cl-informatik.uibk.ac.at/software/tct) v3.0, the latest version of our fully automated complexity analyser.
