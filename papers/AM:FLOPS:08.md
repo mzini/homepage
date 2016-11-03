@@ -1,8 +1,16 @@
 ---
 type: conference
+title: Complexity Analysis by Rewriting
+authors: M. Avanzini and G. Moser
+proceedings: flops9
+year: 2008
+series: lncs
+publisher: springer
+volume: 5989
+pages: 130--146
 doi: 10.1007/978-3-540-78969-7_11
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, ICC
-copyright: Springer
+copyright: springer
 preprint: true
 ---
 

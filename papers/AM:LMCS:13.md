@@ -1,9 +1,16 @@
 ---
 type: article
+authors: M. Avanzini and G. Moser
+title: Polynomial Path Orders
+publisher: dagstuhl
+volume: 9
+number: 4
+year: 2013
+journal: lmcs
 doi: 10.2168/LMCS-9(4:9)2013
 arxiv: 1309.2394
 tags: Term Rewriting, Complexity Analysis, ICC, Automation, Path Orders, Predicative Recursion
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 This paper is concerned with the complexity analysis of

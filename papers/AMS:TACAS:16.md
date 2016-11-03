@@ -1,7 +1,16 @@
 ---
 type: conference
+title: M. Avanzini and G. Moser and M. Schaper
+authors: M. Avanzini and G. Moser and M. Schaper
+proceedings: tacas22
+series: lncs
+volume: 9636
+publisher: springer
+pages: 407--423
+year: 2016
 tags: Program Analysis, Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
-copyright: Springer
+copyright: springer
+preprint: true
 ---
 
 In this paper we present [TCT](http://cl-informatik.uibk.ac.at/software/tct) v3.0, the latest version of our fully automated complexity analyser.

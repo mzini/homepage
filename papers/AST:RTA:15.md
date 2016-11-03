@@ -1,8 +1,16 @@
 ---
 type: conference
+title: Certification of Complexity Proofs using CeTA
+authors: M. Avanzini and C. Sternagel and R. Thiemann
+proceedings: rta26
+volume: 36
+series: lipics
+publisher: dagstuhl
+pages: 23--39
+year: 2013
 doi: 10.4230/LIPIcs.RTA.2015.23
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Certification
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 Nowadays certification is widely employed by automated termination tools for term rewriting,

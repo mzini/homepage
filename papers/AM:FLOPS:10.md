@@ -1,9 +1,17 @@
 ---
 type: conference
+title: Complexity Analysis by Graph Rewriting
+authors: M. Avanzini and G. Moser
+proceedings: flops10
+publisher: springer
+series: lncs
+volume: 6009
+pages: 257--271
+year: 2010
 doi: 10.1007/978-3-642-12251-4_19
 tags: Term Rewriting, Invariance, ICC, Graph Rewriting
 slides: avanzini-flops10.pdf
-copyright: Springer
+copyright: springer
 preprint: true
 ---
 

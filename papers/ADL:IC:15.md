@@ -1,5 +1,8 @@
 ---
 type: draft
+title: On Sharing, Memoization, and Polynomial Time
+authors: M. Avanzini and U. {Dal Lago}
+year: 2015
 tags: Term Rewriting, Complexity Analysis, Memoization, Predicative Recursion, ICC
 accepted: Information and Computation
 ---

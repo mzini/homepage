@@ -3,9 +3,9 @@
   <div class="publication-image">
     <a href="/papers/$bibid$.pdf"><img height="150px" src="/papers/$bibid$.png" alt="$title$"/></a>
   </div>
-  <div class="publication-author">$authors$</div>
+  <div class="publication-author">$authorsHtml$</div>
   <div class="publication-venue">$partial("templates/bibtex-entry-where.html")$</div>
-  $if(copyright)$<div class="publication-copyright">© $copyright$</div>$endif$
+  $if(copyright)$<div class="publication-copyright">© $copyrightHtml$</div>$endif$
   <div style="clear: both"></div>  
   <h2>Abstract</h2>
   <div class="publication-abstract">$body$</div>

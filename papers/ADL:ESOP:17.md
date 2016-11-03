@@ -1,5 +1,8 @@
 ---
 type: draft
+title: Complexity Analysis by Polymorphic Sized Type Inference and Constraint Solving
+authors: M. Avanzini and U. {Dal Lago}
+year: 2016
 submitted: ESOP'17
 tags: Complexity Analysis, Higher-Order, Automation, Sized-Types
 ---

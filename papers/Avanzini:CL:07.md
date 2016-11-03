@@ -1,5 +1,9 @@
 ---
 type: misc
+authors: M. Avanzini
+year: 2007
+title: Term Rewriting Characterizations of Complexity Classes
+tags: ICC, Predicative Recursion
 ---
 
 Cichon and Weiermann introduced the notion of 
@@ -11,7 +15,7 @@ In this report we introduce the reader to
 the topic by reflecting the results and reasoning 
 carried out in two papers by Isabelle Oitavem, leading to 
 a characterization of PSPACE, the functions computable in polynomial space. 
-%
+
 We present a rewrite system R that naturally
 models the functions in PSPACE. It is shown 
 that every R reduction strategy yields an algorithm

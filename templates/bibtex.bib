@@ -7,16 +7,16 @@
 \define{E}{ #1 = #2,
 }%
 %
-@@$entrytype${$bibid$,
+@@$bibEntryType${$bibid$,
 $if(authors)$\ES{author   }{$authors$}$endif$%
 $if(title)$\EQ{title    }{$title$}$endif$%
-$if(booktitle)$\ES{booktitle}{$booktitle$}$endif$%
-$if(series)$\ES{series   }{$series$}$endif$%
+$if(proceedings)$\ES{booktitle}{$proceedingsTex$}$endif$%
+$if(series)$\ES{series   }{$seriesTex$}$endif$%
 $if(school)$\ES{school   }{$school$}$endif$%
-$if(journal)$\EQ{journal  }{$journal$}$endif$%
+$if(journal)$\EQ{journal  }{$journalTex$}$endif$%
 $if(volume)$\ES{volume   }{$volume$}$endif$%
 $if(year)$\E{year     }{$year$}$endif$%
 $if(pages)$\ES{pages    }{$pages$}$endif$%
-$if(publisher)$\ES{publiser }{$publisher$}$endif$%
-$if(accepted)$\ES{note     }{Accepted for publication.}$endif$%
+$if(publisher)$\ES{publisher}{$publisherTex$}$endif$%
+$if(submitted)$\ES{note     }{Submitted.}$endif$%
 }%

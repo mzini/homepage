@@ -1,8 +1,15 @@
 ---
+type: article
+authors: M. Avanzini and G. Moser
+title: A Combination Framework for Complexity
+journal: ic
+volume: 248
+pages: 22--55
+year: 2016
+publisher: elsevier
 tags: Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
 doi: 10.1016/j.ic.2015.12.007
-copyright: Elsevier
-type: article
+copyright: elsevier
 ---
 
 In this paper we present a combination framework for the automated

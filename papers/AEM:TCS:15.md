@@ -1,8 +1,15 @@
 ---
 type: article
+title: A new Order-theoretic Characterisation of the Polytime Computable Functions
+authors: M. Avanzini and N. Eguchi and G. Moser
+publisher: elsevier
+volume: 585
+pages: 3--24
+year: 2015
+journal: tcs
 doi: 10.1016/j.tcs.2015.03.003
 tags: Term Rewriting, Complexity Analysis, ICC, Automation, Predicative Recursion
-copyright: Elsevier
+copyright: elsevier
 ---
 
 We propose a new order-theoretic characterisation of the 

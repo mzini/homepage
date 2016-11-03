@@ -1,5 +1,9 @@
 ---
 type: workshop
+title: Type Introduction for Runtime Complexity Analysis
+authors: M. Avanzini and B. Felgenhauer
+proceedings: wst14
+year: 2012
 slides: avanzini-wst14.pdf
 tags: Term Rewriting, Types, Runtime Complexity Analysis
 ---

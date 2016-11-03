@@ -1,10 +1,18 @@
 ---
 type: conference
+authors: M. Avanzini and G.Moser
+title: A Combination Framework for Complexity
+proceedings: rta24
+volume: 21
+series: lipics
+publisher: dagstuhl
+pages: 55--70
+year: 2013
 doi: 10.4230/LIPIcs.RTA.2013.55
 arxiv: 1302.0973
 slides: avanzini-rta13.pdf
 tags: Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 In this paper we present a combination framework for the automated

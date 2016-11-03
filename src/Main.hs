@@ -1,11 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE ViewPatterns #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 module Main (main) where
-
-import           Bibtex
 
 import           Control.Monad ((>=>), void,forM, msum, filterM)
 import           Data.List (sortBy)
 import qualified Data.Map as M
+import           Data.Char (isAlpha)
 import           Data.Maybe (fromMaybe)
 import           Data.Monoid ((<>))
 import           Data.Ord (comparing)
@@ -14,7 +16,9 @@ import           Data.Time.Format (formatTime, parseTimeM, defaultTimeLocale)
 import           Hakyll
 import           System.FilePath (addExtension, replaceExtension, takeDirectory, takeBaseName, (</>))
 import           System.Process (system)
+import           Text.Read (readMaybe)
 import qualified Text.Pandoc as Pandoc
+import Text.Regex (subRegex, mkRegex)
 
 config :: Configuration
 config = defaultConfiguration
@@ -26,10 +30,7 @@ config = defaultConfiguration
 system_ :: [String] -> IO ()
 system_ = void . system . unwords
 
-getFieldUTC :: MonadMetadata m
-           => String            -- ^ Field
-           -> Identifier        -- ^ Input page
-           -> m UTCTime         -- ^ Parsed UTCTime
+getFieldUTC :: MonadMetadata m => String -> Identifier -> m UTCTime
 getFieldUTC fld id' = do
     metadata <- getMetadata id'
     let tryField k fmt = M.lookup k metadata >>= parseTime' fmt
@@ -62,11 +63,8 @@ sortByItems get items = do
 sortByDate :: String -> [Item a] -> Compiler [Item a]
 sortByDate which = sortByItems (getFieldUTC which . itemIdentifier)
 
-sortByBibField :: Ord b => BibFile -> (BibEntry -> Maybe b) -> [Item a] -> Compiler [Item a]
-sortByBibField biblio which = sortByItems (return . biblioField biblio which)
-
 ----------------------------------------------------------------------
--- combiler combinators
+-- compiler combinators
 
 wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
 wrapHtmlContent ctx = 
@@ -100,25 +98,11 @@ xelatex item = do
   unsafeCompiler $ do
     writeFile tex (itemBody item)
     writeFile (takeDirectory tex </> "bibliography.bib") bib
-    -- system_ ["./latex.sh", takeDirectory tex, takeBaseName tex]
-    latex tex
-    biber tex
-    latex tex
-    latex tex
+    latex tex >> biber tex >> latex tex >> latex tex
   makeItem $ TmpFile (replaceExtension tex "pdf")
     where
-      biber tex =
-          system_ ["biber"
-                  , "--input-directory", takeDirectory tex
-                  , "--output-directory", takeDirectory tex
-                  , takeBaseName tex
-                  ] -- , "2>&1", ">/dev/zero"
-      latex tex = 
-          system_ ["xelatex"
-                  , "-halt-on-error"
-                  , "-output-directory", takeDirectory tex
-                  , tex
-                  , "2>&1", ">/dev/zero" ]
+      biber tex = system_ ["biber", "--input-directory", takeDirectory tex, "--output-directory", takeDirectory tex, takeBaseName tex, "2>&1", ">/dev/zero" ]
+      latex tex = system_ ["xelatex", "-halt-on-error", "-output-directory", takeDirectory tex, tex, "2>&1", ">/dev/zero" ]
 
 gpp :: Item String -> Compiler (Item String)
 gpp = withItemBody (unixFilter "gpp" ["-T"])
@@ -189,109 +173,153 @@ softwareListCompiler = do
 getBibId :: Item a -> String
 getBibId = takeBaseName . toFilePath . itemIdentifier  
 
-biblioField :: BibFile -> (BibEntry -> Maybe b) -> Item a -> Maybe b
-biblioField biblio f i = lookupById (getBibId i) biblio >>= f
+entryType :: Item a -> Compiler String
+entryType item = getMetadataField' (itemIdentifier item) "type"
 
-publicationContext :: Tags -> BibFile -> Context String        
-publicationContext tags biblio = 
+bibEntryType :: Item a -> Compiler String
+bibEntryType item = be <$> entryType item where
+  be "workshop"   = "inproceedings"
+  be "conference" = "inproceedings"
+  be "draft"      = "unpublished"
+  be "misc"       = "unpublished"
+  be et           = et
+
+seriesTex :: String -> String
+seriesTex "lncs" = "Lecture Notes in Computer Science"
+seriesTex "lnai" = "Lecture Notes in Artificial Intelligence"
+seriesTex "lipics" = "Leibnitz International Proceedings in Informatics"
+seriesTex s = s
+
+copyrightTex :: String -> String                      
+copyrightTex "cc" = "Creative Commons License - ND"
+copyrightTex c = publisherTex c
+
+publisherTex :: String -> String
+publisherTex "springer" = "Springer Verlag Heidelberg"
+publisherTex "elsevier" = "Elsevier"
+publisherTex "acm" = "Association for Computing Machinery"
+publisherTex "dagstuhl" = "Leibnitz Zentrum für Informatik"
+
+journalTex :: String -> String
+journalTex "ic" = "Information and Computation"
+journalTex "tcs" = "Theoretical Computer Science"
+journalTex "lmcs" = "Logical Methods in Computer Science"
+
+
+proceedingsTex :: String -> String
+proceedingsTex name = fromMaybe name $ do
+  (s,n) <- return (span isAlpha name)
+  (num :: Int) <- readMaybe n
+  return ("Proceedings of the " ++ nth (read n) ++ " " ++ conferenceTex s)
+  where
+    nth num | num `mod` 10 == 1 && num > 20 = "\\nst{" ++ show num ++ "}"
+            | num `mod` 10 == 2 && num > 20 = "\\nnd{" ++ show num ++ "}"
+            | num `mod` 10 == 3 && num > 20 = "\\nrd{" ++ show num ++ "}"
+            | otherwise                     = "\\nth{" ++ show num ++ "}"
+            
+conferenceTex :: String -> String
+conferenceTex "rta" = "International Conference on Rewriting Techniques and Applications"
+conferenceTex "aconferenceTexas" = "Asian Symposium on Programming Languages and Systems"
+conferenceTex "dice"  = "International Workshop on Developments in Implicit Complexity"
+conferenceTex "fscd"  = "International Conference on Formal Structures for Computation and Deduction"
+conferenceTex "hart"  = "Workshop on Haskell and Rewriting Techniques"
+conferenceTex "icfp"  = "ACM SIGPLAN International Conference on Functional Programming"
+conferenceTex "ijcar" = "International Joint Conference on Automated Reasoning"
+conferenceTex "flops" = "International Symposium on Functional and Logic Programming"      
+conferenceTex "stacs" = "International Symposium on Theoretical Aspects of Computer Science"
+conferenceTex "tacas" = "International Conference on Tools and Algorithms for the Construction and Analysis of Systems"
+conferenceTex "wst"   = "Workshop on Termination"
+conferenceTex p       = p
+
+publicationContext :: Tags -> Context String        
+publicationContext tags = 
   metadataField
-  <> field "bibid" (return . getBibId)
-  <> bibTextField "entrytype" (Just . entryType)
-  -- type
-  <> bibBoolField "isArticle" isArticle
-  <> bibBoolField "isInProceeding" isInProceeding
-  <> bibBoolField "isTechreport" isTechreport
-  <> bibBoolField "isPhdThesis" isPhdThesis
-  <> bibBoolField "isMastersThesis" isMastersThesis  
-  -- fields
-  <> bibTextField "authors" authors
-  <> bibTextField "title" title
-  <> bibTextField "journal" journal
-  <> bibTextField "booktitle" booktitle
-  <> bibTextField "school" school
-  <> bibIntField "year" year
-  <> bibIntField "volume" volume
-  <> bibTextField "number" number
-  <> bibTextField "institution" institution  
-  <> bibTextField "publisher" publisher
-  <> bibTextField "series" series
-  <> bibTextField "note" note
-  <> bibTextField "pages" pages
-  <> tagsField "theTags" tags
-  <> defaultContext  
+  <> field "bibid"            (return . getBibId)
+  <> field "entryType"        entryType
+  <> field "bibEntryType"     bibEntryType
+  <> longFields "series"      seriesTex
+  <> longFields "copyright"   copyrightTex
+  <> longFields "publisher"   publisherTex
+  <> longFields "journal"     journalTex
+  <> longFields "authors"     id
+  <> longFields "pages"       id    
+  <> longFields "proceedings" proceedingsTex    
+  <> tagsField "theTags"      tags
+  <> defaultContext
+  where
+    longFields n f =
+      field (n ++ "Tex") (\ item -> fromMaybe "???" <$> fmap f <$> getMetadataField (itemIdentifier item) n)
+      <> field (n ++ "Html") (\ item -> fromMaybe "???" <$> fmap htmlize <$> fmap f <$> getMetadataField (itemIdentifier item) n)              
+    htmlize =       sub "(\\{|\\})" ""    
+      . sub "\\\\ " " "    
+      . sub "--" "&ndash;"          
+      . sub "\\\\nrd\\{([0-9]*)\\}" "\\1rd"  
+      . sub "\\\\nnd\\{([0-9]*)\\}" "\\1nd"
+      . sub "\\\\nst\\{([0-9]*)\\}" "\\1st"      
+      . sub "\\\\nth\\{([0-9]*)\\}" "\\1th" 
+    sub pat = flip (subRegex (mkRegex pat))
 
-  where 
-    bibTextField t f = field t getField where
-      getField i = 
-        case biblioField biblio f i of 
-         Just e -> return e
-         Nothing -> fail $ unwords ["no bibtex field", t, "for entry", getBibId i]
-    bibIntField t f = bibTextField t (fmap show . f)
-    bibBoolField t f = boolField t getField where
-      getField i = fromMaybe False (f <$> lookupById (getBibId i) biblio)
-
-
+  
 loadPublications :: Compiler [Item String]
-loadPublications = loadAll ("papers/*.md" .&&. hasNoVersion)
+loadPublications = sortByDate "year" =<< loadAll ("papers/*.md" .&&. hasNoVersion)
 
-publicationCompiler :: Tags -> BibFile -> Compiler (Item String)
-publicationCompiler tags biblio = 
+publicationCompiler :: Tags -> Compiler (Item String)
+publicationCompiler tags = 
     pandocCompiler 
      >>= loadAndApplyTemplate "templates/publication.html" ctx
      >>= wrapHtmlContent ctx
-    where ctx = publicationContext tags biblio
+    where ctx = publicationContext tags
 
-publicationListContext :: Tags -> BibFile -> [Item String] -> Context String
-publicationListContext tags biblio pubs =
-    publicationField "workshop" 
-    <> publicationField "thesis"     
-    <> publicationField "conference" 
-    <> publicationField "article" 
-    <> publicationField "misc" 
-    <> publicationField "draft"     
+publicationListContext :: Tags -> [Item String] -> Context String
+publicationListContext tags pubs =
+    publicationField "workshop"      (== "workshop")
+    <> publicationField "thesis"     (`elem` ["phdthesis", "mastersthesis"])     
+    <> publicationField "conference" (== "conference") 
+    <> publicationField "article"    (== "article")
+    <> publicationField "draft"      (== "draft")
+    <> publicationField "misc"       (== "misc")
     <> field "tagcloud" (const $ renderTagCloud 30 150 tags)
     <> listField "publications" pctx (return pubs)
     <> defaultContext
   where 
-    pctx = publicationContext tags biblio
-    publicationField n = listField n pctx (filterType n)
-    filterType n = filterM (\ item -> (== n) <$> getMetadataField' (itemIdentifier item) "type") pubs
-  
+    pctx = publicationContext tags
+    publicationField n f = listField n pctx (filterType f)
+    filterType f = filterM (\ item -> f <$> entryType item) pubs
 
 
-publicationListCompilerForTag :: String -> Pattern -> Tags -> BibFile -> Compiler (Item String)
-publicationListCompilerForTag string pattern tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadAll (pattern .&&. hasNoVersion)
+publicationListCompilerForTag :: String -> Pattern -> Tags -> Compiler (Item String)
+publicationListCompilerForTag string pattern tags = do
+  pubs <- sortByDate "year" =<< loadAll (pattern .&&. hasNoVersion)
   let ctx = constField "title" ("List of Publications: " ++ string)
-            <> publicationListContext tags biblio pubs
+            <> publicationListContext tags pubs
   makeItem ""
    >>= loadAndApplyTemplate "templates/publications.html" ctx
    >>= wrapHtmlContent ctx
 
-publicationListCompiler :: Tags -> BibFile -> Compiler (Item String)
-publicationListCompiler tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadPublications
-  templateAsHtmlContent (publicationListContext tags biblio pubs)
+publicationListCompiler :: Tags -> Compiler (Item String)
+publicationListCompiler tags = do
+  pubs <- loadPublications
+  templateAsHtmlContent (publicationListContext tags pubs)
 
-publicationListPdfCompiler :: Tags -> BibFile -> Compiler (Item TmpFile)
-publicationListPdfCompiler tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadPublications
+publicationListPdfCompiler :: Tags -> Compiler (Item TmpFile)
+publicationListPdfCompiler tags = do
+  pubs <- loadPublications
   getResourceBody 
-   >>= applyAsTemplate (publicationListContext tags biblio pubs )
+   >>= applyAsTemplate (publicationListContext tags pubs)
    >>= loadAndApplyTemplate "templates/document.tex" defaultContext
    >>= xelatex   
 
-publicationListTexCompiler :: Tags -> BibFile -> Compiler (Item String)
-publicationListTexCompiler tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadPublications
+publicationListTexCompiler :: Tags -> Compiler (Item String)
+publicationListTexCompiler tags = do
+  pubs <- loadPublications
   getResourceBody 
-   >>= applyAsTemplate (publicationListContext tags biblio pubs )
+   >>= applyAsTemplate (publicationListContext tags pubs)
    >>= loadAndApplyTemplate "templates/document.tex" defaultContext   
 
-bibliographyCompiler :: Tags -> BibFile -> Compiler (Item String)
-bibliographyCompiler tags biblio = do
-  pubs <- sortByBibField biblio year =<< loadPublications
-  getResourceBody >>= applyAsTemplate (publicationListContext tags biblio pubs) >>= gpp
+bibliographyCompiler :: Tags -> Compiler (Item String)
+bibliographyCompiler tags = do
+  pubs <- loadPublications
+  getResourceBody >>= applyAsTemplate (publicationListContext tags pubs) >>= gpp
 
 
 ----------------------------------------------------------------------
@@ -324,18 +352,18 @@ cvPdfCompiler =
 ----------------------------------------------------------------------
 -- index
 
-indexCompiler :: Tags -> BibFile -> Compiler (Item String)
-indexCompiler tags biblio = do
-   pubs <- fmap (take 3) . sortByBibField biblio year =<< loadPublications
+indexCompiler :: Tags -> Compiler (Item String)
+indexCompiler tags = do
+   pubs <- take 3 <$> loadPublications
    events <- reverse <$> (sortByDate "start" =<< upcomingEvents)
    events' <- sortByDate "end" =<< pastEvents
    projects <- sortByDate "end" =<< loadProjects
    templateAsHtmlContent 
-         (  listField "publications"       (publicationContext tags biblio)  (return pubs)
+         (  listField "publications"      (publicationContext tags)    (return pubs)
          <> boolField "hasUpcomingEvents" (const (not (null events)))
-         <> listField "upcomingEvents"    eventContext                      (return events) 
-         <> listField "pastEvents"         eventContext                      (return events')          
-         <> listField "projects"           projectContext                    (return projects)                     
+         <> listField "upcomingEvents"    eventContext                 (return events) 
+         <> listField "pastEvents"        eventContext                 (return events')          
+         <> listField "projects"          projectContext               (return projects)                     
          <> defaultContext )
 
 ----------------------------------------------------------------------
@@ -343,10 +371,7 @@ indexCompiler tags biblio = do
 main :: IO ()
 main = hakyllWith config $ do
     tags <- buildTags "papers/*" (fromCapture "tags/*.html")
-    strings <- makePatternDependency "papers/strings.bib"
-    references <- makePatternDependency "papers/references.bib"
-    biblio <- rulesExtraDependencies [strings,references] $ preprocess (parseBibFile ["papers/strings.bib", "papers/references.bib"])
-
+    
     -- files etc    
     match ("images/*.jpg" .||. "images/*.png") $ do
         route idRoute
@@ -375,16 +400,16 @@ main = hakyllWith config $ do
         route   $ setExtension "png"
         compile $ getResourceFilePath >>= pdfToPng
 
-    match "papers/*.md" $ version "bibtex" $ rulesExtraDependencies [strings,references] $ do
+    match "papers/*.md" $ version "bibtex" $ do
         route   $ setExtension ".bib"    
         compile $
           getResourceBody 
-           >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags biblio)
+           >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags)
            >>= gpp
 
-    match "papers/*.md" $ rulesExtraDependencies [strings,references] $ do
+    match "papers/*.md" $ do
         route   $ setExtension ".html"
-        compile $ publicationCompiler tags biblio 
+        compile $ publicationCompiler tags
         
     match "projects/*.md" $ 
         compile $ metadataCompiler "templates/project.html"
@@ -398,7 +423,6 @@ main = hakyllWith config $ do
         compile $ metadataCompiler "templates/software.html"
 
     -- hosa page
-
     match "software/hosa/*.md" $ do
         route  $ setExtension "html"
         compile $ pandocCompiler >>= wrapHtmlContent defaultContext
@@ -414,23 +438,23 @@ main = hakyllWith config $ do
 
     match "publications.html" $ do
         route (setExtension "html")    
-        compile (publicationListCompiler tags biblio)
+        compile (publicationListCompiler tags)
 
     match "bibliography.bib" $ do
         route idRoute
-        compile (bibliographyCompiler tags biblio)
+        compile (bibliographyCompiler tags)
 
     match "publications.tex" $ version "pdf" $ do
         route (setExtension "pdf")
-        compile (publicationListPdfCompiler tags biblio)
+        compile (publicationListPdfCompiler tags)
 
     match "publications.tex" $ version "tex" $ do
         route idRoute
-        compile (publicationListTexCompiler tags biblio)
+        compile (publicationListTexCompiler tags)
 
     tagsRules tags $ \ tag pattern -> do 
         route   idRoute
-        compile (publicationListCompilerForTag tag pattern tags biblio)
+        compile (publicationListCompilerForTag tag pattern tags)
                                         
     match "cv.md" $ do
         route (setExtension "html")
@@ -442,7 +466,7 @@ main = hakyllWith config $ do
 
     match "index.html" $ do
       route idRoute
-      compile (indexCompiler tags biblio)
+      compile (indexCompiler tags)
 
 
 

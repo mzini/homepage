@@ -1,5 +1,10 @@
 ---
-type: thesis
+type: phdthesis
+authors: M. Avanzini
+title: Verifying Polytime Computability Automatically
+school: University of Innsbruck
+year: 2013
+phdthesis: true
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, ICC, Predicative Recursion, Automation, TCT, Invariance
 ---
 

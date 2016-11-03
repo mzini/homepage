@@ -1,5 +1,10 @@
 ---
-type: thesis
+type: mastersthesis
+title: Automation of Polynomial Path Orders
+year: 2009
+school: University of Innsbruck
+authors: M. Avanzini
+mastersthesis: true
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, ICC, Predicative Recursion, Automation
 ---
 The automated complexity analysis of rewrite systems is a challenging topic that

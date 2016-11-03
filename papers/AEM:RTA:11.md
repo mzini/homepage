@@ -1,10 +1,18 @@
 ---
 type: conference
+title: A Path Order for Rewrite Systems that Compute Exponential Time Functions
+authors: M. Avanzini and N. Eguchi and G. Moser
+proceedings: rta22
+series: lipics
+publisher: dagstuhl
+volume: 10
+year: 2011
+pages: 123--138
 doi: 10.4230/LIPIcs.RTA.2011.123
 arxiv: 1010.1128
 slides: avanzini-rta11.pdf
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, ICC, Predicative Recursion
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 In this paper we present a new path order for rewrite

@@ -1,9 +1,16 @@
 ---
-tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, Automation, Predicative Recursion
 type: conference
-preprint: true
+title: POP* and Semantic Labeling Using SAT
+authors: M. Avanzini
+proceedings: Interfaces: Explorations in Logic, Language and Computation, ESSLLI 2008 and ESSLLI 2009 Student Sessions. Selected Papers.
+publisher: springer
+series: lncs
+volume: 6211
+year: 2010
 doi: 10.1007/978-3-642-14729-6_12
-copyright: Springer
+copyright: springer
+preprint: true
+tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, Automation, Predicative Recursion
 ---
 
 The *polynomial path order* is 

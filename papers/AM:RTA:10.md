@@ -1,10 +1,18 @@
 ---
 type: conference
+authors: M. Avanzini and G.Moser
+title: Closing the Gap Between Runtime Complexity and Polytime Computability
+proceedings: rta21
+volume: 6
+series: lipics
+publisher: dagstuhl
+pages: 33--48
+year: 2010
 doi: 10.4230/LIPIcs.RTA.2010.33
 arxiv: 1001.5404
 slides: avanzini-rta10.pdf
 tags: Term Rewriting, Invariance, ICC, Graph Rewriting
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 In earlier work, we have shown

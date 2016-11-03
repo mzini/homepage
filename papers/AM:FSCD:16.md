@@ -1,8 +1,16 @@
 ---
 type: conference
+title: Complexity of Acyclic Term Graph Rewriting
+authors: M. Avanzini and G. Moser
+proceedings: fscd1
+pages: 10:1--10:18
+year: 2016
+series: lipics
+volume: 52
+publisher: dagstuhl
 doi: 10.4230/LIPIcs.FSCD.2016.10
 tags: Program Analysis, Graph Rewriting, Complexity Analysis, Runtime Complexity Analysis
-copyright: Creative Commons License - ND
+copyright: cc
 ---
 
 Term rewriting has been used as a formal model to reason about the complexity of logic, functional, and imperative programs.
