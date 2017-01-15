@@ -153,16 +153,10 @@ projectContext = metadataField <> defaultContext
 ----------------------------------------------------------------------
 -- software
 
-loadLibs :: Compiler [Item String]
-loadLibs = loadAll "software/libraries/*.md"
-
-loadTools :: Compiler [Item String]
-loadTools = loadAll "software/tools/*.md"
-
 softwareListCompiler :: Compiler (Item String)
 softwareListCompiler = do 
-  tools <- loadTools
-  libs <- loadLibs
+  tools <- loadAll ("software/tools/*.md" .&&. hasNoVersion)
+  libs <- loadAll ("software/libraries/*.md" .&&. hasNoVersion)
   templateAsHtmlContent $
     listField "tools" (metadataField <> defaultContext) (return tools)
     <> listField "libs" (metadataField <> defaultContext) (return libs)
@@ -219,7 +213,7 @@ proceedingsTex name = fromMaybe name $ do
             
 conferenceTex :: String -> String
 conferenceTex "rta" = "International Conference on Rewriting Techniques and Applications"
-conferenceTex "aconferenceTexas" = "Asian Symposium on Programming Languages and Systems"
+conferenceTex "aplas" = "Asian Symposium on Programming Languages and Systems"
 conferenceTex "dice"  = "International Workshop on Developments in Implicit Complexity"
 conferenceTex "fscd"  = "International Conference on Formal Structures for Computation and Deduction"
 conferenceTex "hart"  = "Workshop on Haskell and Rewriting Techniques"
@@ -328,8 +322,12 @@ bibliographyCompiler tags = do
 cvPandocCompiler :: Bool -> Compiler (Item String)
 cvPandocCompiler html = do
   projects <- sortByDate "end" =<< loadProjects
+  tools <- loadAll ("software/tools/*.md" .&&. hasVersion "cv")
+  libs <- loadAll ("software/libraries/*.md" .&&. hasVersion "cv")
   let 
    ctx = listField "projects" projectContext (return projects)
+         <> listField "tools" (metadataField <> defaultContext) (return tools)
+         <> listField "libs"  (metadataField <> defaultContext) (return libs)
          <> boolField "html" (const html)
          <> defaultContext
   getResourceBody >>= applyAsTemplate ctx >>= gpp
@@ -421,6 +419,11 @@ main = hakyllWith config $ do
         compile $ metadataCompiler "templates/software.html"
     match "software/libraries/*.md" $
         compile $ metadataCompiler "templates/software.html"
+
+    match "software/tools/*.md" $ version "cv" $ 
+        compile $ metadataCompiler "templates/software-cv.md"
+    match "software/libraries/*.md" $ version "cv" $ 
+        compile $ metadataCompiler "templates/software-cv.md"
 
     -- hosa page
     match "software/hosa/*.md" $ do

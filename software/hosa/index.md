@@ -23,7 +23,9 @@ To install HoSA via stack, navigate to the source distribution folder in a termi
 stack install
 ~~~~~~~
 
-This will install HoSA together with all its requirements.
+This will install HoSA together with all its requirements. Note however that
+[GUBS solver](https://github.com/mzini/gubs) needs an SMT-solver installed, such as
+[Microsoft's Z3](https://github.com/Z3Prover/z3).
 
 
 ## Usage

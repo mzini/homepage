@@ -1,6 +1,6 @@
 ---
 type: conference
-title: M. Avanzini and G. Moser and M. Schaper
+title: TcT: Tyrolean Complexity Tool
 authors: M. Avanzini and G. Moser and M. Schaper
 proceedings: tacas22
 series: lncs

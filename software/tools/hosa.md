@@ -5,6 +5,8 @@ license: MIT
 language: haskell
 paper: ADL:ESOP:17
 github: mzini/hosa
+short: Complexity Analyser of Higher-Order programs through sized-type analysis and ticking
+oncv: true
 ---
 
 HOSA implements complexity analysis of higher-order functional programs via sized-types.

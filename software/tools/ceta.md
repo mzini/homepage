@@ -4,6 +4,8 @@ license: GPL
 external: http://cl-informatik.uibk.ac.at/software/ceta/
 language: haskell
 paper: AST:RTA:15
+short: A formally verified tool for checking termination, confluence and complexity proofs. I have contributed the formalisation of dependency tuples
+oncv: true
 ---
 
 *CeTA* is a tool that certifies proofs of non-functional properties of rewrite systems, such as termination, confluence, and complexity,

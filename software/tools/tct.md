@@ -5,6 +5,8 @@ license: BSD
 language: haskell
 paper: AM:RTA:13b
 github: mzini/tct
+short: Full-fledged runtime complexity analyser
+oncv: true
 ---
 
 The Tyrolean Complexity Tool is a tool for automatically proving *polynomial*

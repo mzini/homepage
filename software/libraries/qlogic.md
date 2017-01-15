@@ -4,6 +4,7 @@ license: GPL
 external: http://cl-informatik.uibk.ac.at/software/tct/projects/qlogic/
 language: haskell
 github: mzini/qlogic
+short: High-level abstraction to SAT-solvers
 ---
 This is a Haskell library for dealing with propositional logic. In particular, it provides the following features:
 
