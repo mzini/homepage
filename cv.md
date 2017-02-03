@@ -9,12 +9,12 @@ address: Schnatzenbichl 3, A-6063 Rum
 \define{BR}{$if(html)$</br>$endif$\newline}
 
 # Research Interests {-}
-- Complexity analysis
 - Functional programming
-- Implicit computational complexity
-- Proof theory
 - Rewriting
 - Static program analysis
+- Complexity analysis
+- Implicit computational complexity
+
 
 # Higher Education {-}
 
@@ -58,7 +58,7 @@ $endfor$
 # Scientific Activities {-}
 
 - **PC member.** \DATE{2017}
-  17th International Workshop on Logic and Computational Complexity, Reykjavik, Island.
+  [17th International Workshop on Logic and Computational Complexity](http://www.cs.swansea.ac.uk/lcc/), Reykjavik, Island.
 - **PC member.** \DATE{2014} 
   [5th Workshop on Developments in Implicit Computational Complexity](http://dice14.tcs.ifi.lmu.de/), Grenoble, France. 
 - **Invited speaker.** \DATE{2013} 
@@ -68,7 +68,7 @@ $endfor$
 
 # Software Development {-}
 
-The following gives a short list of most important software projects that I was involved. If not mentioned otherwise,
+The following gives a short list of most important software projects that I was involved in. If not mentioned otherwise,
 I am (among) the main developer(s).
 Details can be found at my [software page](http://cl-informatik.uibk.ac.at/users/zini/software.html).
 $for(tools)$

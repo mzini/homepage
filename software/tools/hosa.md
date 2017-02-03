@@ -5,7 +5,7 @@ license: MIT
 language: haskell
 paper: ADL:ESOP:17
 github: mzini/hosa
-short: Complexity Analyser of Higher-Order programs through sized-type analysis and ticking
+short: Complexity analyser of higher-order programs through sized-type analysis and program instrumentation
 oncv: true
 ---
 
