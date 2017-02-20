@@ -1,9 +1,9 @@
 ---
-type: draft
-title: Complexity Analysis by Polymorphic Sized Type Inference and Constraint Solving
-authors: M. Avanzini and U. {Dal Lago}
-year: 2016
-submitted: ESOP'17
+type: workshop
+title: Automating Size Type Inference and Complexity Analysis
+authors: M. Avanzini and U. Dal Lago
+proceedings: dice17
+year: 2017
 tags: Complexity Analysis, Higher-Order, Automation, Sized-Types
 ---
 
@@ -17,3 +17,4 @@ cannot be handled by most competitor methodologies. This is possible
 due to various key ingredients, and in particular an abstract index
 language and index polymorphism at higher ranks. A prototype
 implementation is available.
+

@@ -4,7 +4,7 @@ title: Sized-type inference for higher-order functional programs
 # Sized-type inference for higher-order functional programs
 
 HoSA performs inference of sized-types for higher-order functional programs,
-as explained in our recent [ESOP submission](). 
+as explained in our recent [paper](http://cl-informatik.uibk.ac.at/users/zini/papers/ADL:ICFP:17.pdf). 
 
 
 ## Download and installation
@@ -44,8 +44,8 @@ hosa --help
 
 In particular the flag `-a time` allows to switch on runtime complexity analysis
 via code-ticking.
-HoSA is still under development and features currently just a very rudimentary
-parser for higher-order programs, see the
+HoSA is still under development and features currently just a simple format
+for higher-order programs, see the
 [example folder](https://github.com/mzini/hosa/tree/polymorph/examples)
 for the syntax of input programs.
 

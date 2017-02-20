@@ -2,7 +2,8 @@
 title: GUBS
 license: MIT
 language: haskell
-github: mzini/gubs
+github: ComputationWithBoundedResources/hoca
+paper: AS:DICE:17
 short: A constraint solver for polynomial inequalities
 oncv: true
 ---
