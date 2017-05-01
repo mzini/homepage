@@ -7,7 +7,7 @@ volume: 36
 series: lipics
 publisher: dagstuhl
 pages: 23--39
-year: 2013
+year: 2015
 doi: 10.4230/LIPIcs.RTA.2015.23
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Certification
 copyright: cc

@@ -2,7 +2,7 @@
 type: workshop
 title: Automating Size Type Inference and Complexity Analysis
 authors: M. Avanzini and U. Dal Lago
-proceedings: 8th Workshop on Developments in Implicit Computational complExity and 5th Workshop on Foundational and Practical Aspects of Resource Analysis
+proceedings: Proceedings of 8th Workshop on Developments in Implicit Computational complExity and 5th Workshop on Foundational and Practical Aspects of Resource Analysis
 year: 2017
 tags: Complexity Analysis, Higher-Order, Automation, Sized-Types
 ---
