@@ -7,7 +7,7 @@ module Main (main) where
 import           Control.Monad ((>=>), void,forM, msum, filterM)
 import           Data.List (sortBy)
 import qualified Data.Map as M
-import           Data.Char (isAlpha)
+import           Data.Char (isAlpha, toLower)
 import           Data.Maybe (fromMaybe)
 import           Data.Monoid ((<>))
 import           Data.Ord (comparing)
@@ -182,6 +182,7 @@ seriesTex :: String -> String
 seriesTex "lncs" = "Lecture Notes in Computer Science"
 seriesTex "lnai" = "Lecture Notes in Artificial Intelligence"
 seriesTex "lipics" = "Leibnitz International Proceedings in Informatics"
+seriesTex "pacmpl" = "Proceedings of the ACM on Programming Languages"
 seriesTex s = s
 
 copyrightTex :: String -> String                      
@@ -198,7 +199,6 @@ journalTex :: String -> String
 journalTex "ic" = "Information and Computation"
 journalTex "tcs" = "Theoretical Computer Science"
 journalTex "lmcs" = "Logical Methods in Computer Science"
-
 
 proceedingsTex :: String -> String
 proceedingsTex name = fromMaybe name $ do
@@ -231,16 +231,17 @@ publicationContext tags =
   <> field "bibid"            (return . getBibId)
   <> field "entryType"        entryType
   <> field "bibEntryType"     bibEntryType
-  <> longFields "series"      seriesTex
-  <> longFields "copyright"   copyrightTex
-  <> longFields "publisher"   publisherTex
-  <> longFields "journal"     journalTex
+  <> longFields "series"      (seriesTex . lowercase)
+  <> longFields "copyright"   (copyrightTex . lowercase)
+  <> longFields "publisher"   (publisherTex . lowercase)
+  <> longFields "journal"     (journalTex . lowercase)
   <> longFields "authors"     id
   <> longFields "pages"       id    
-  <> longFields "proceedings" proceedingsTex    
+  <> longFields "proceedings" (proceedingsTex . lowercase)
   <> tagsField "theTags"      tags
   <> defaultContext
   where
+    lowercase = map toLower
     longFields n f =
       field (n ++ "Tex") (\ item -> fromMaybe "???" <$> fmap f <$> getMetadataField (itemIdentifier item) n)
       <> field (n ++ "Html") (\ item -> fromMaybe "???" <$> fmap htmlize <$> fmap f <$> getMetadataField (itemIdentifier item) n)              
