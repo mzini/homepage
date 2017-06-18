@@ -430,6 +430,12 @@ main = hakyllWith config $ do
     match "software/hosa/*.md" $ do
         route  $ setExtension "html"
         compile $ pandocCompiler >>= wrapHtmlContent defaultContext
+
+    -- schroedinger page
+    match "projects/J3563/*.html" $ do
+        route idRoute
+        let ctx = listField "publications" (publicationContext tags) loadPublications <> defaultContext
+        compile $ templateAsHtmlContent ctx
         
     -- main pages
     match "software.html" $ do

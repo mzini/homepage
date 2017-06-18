@@ -1,0 +1,34 @@
+---
+title: Higher-Order Complexity Analysis of Rewrite Systems
+---
+<h1> Higher-Order Complexity Analysis of Rewrite Systems </h1>
+
+We are increasingly relying on computer systems, whereas the level of sophistication of such systems steadily increased over the last decades. To produce robust systems, we require tools which support verification in an automated setting. Limited computational resources, such as space (i.e., memory) and time, render resource analysis a central topic in software verification
+<p>
+  We aim to advance the field of static resource analysis, by devising new methods for the automated runtime complexity analysis of functional programs. Given a program, such methods should be able to deduce useful bounds on the runtime (i.e., number of computation steps) of the provided programs, as a function of the size of the inputs. To ensure that results are broadly applicable, one usually considers an abstract model of computation instead of a specific programming language. Term rewrite systems are particularly well suited as such an abstract language, and runtime complexity analysis is a very active research area in rewriting. However, the lack of facilities to faithfully model higher-order functions has prevented the use of rewrite systems for the analysis of functional programs written in languages like Haskell or OCaml, where the use of higher-order functions is paramount.
+<p>  
+To overcome this regrettable situation, we base our studies on higher-order rewrite systems (HORSs for short), one of the most general formal models of functional programs. HORSs extend term rewrite systems to terms with abstraction and application. To date, almost no results are known on the resource analysis of HORSs. Nevertheless, we can draw inspiration from related areas of research, such as program analysis and the area of implicit computational complexity (ICC for short). Notably, the ICC community has a long history of producing characterisations of the class of polytime computable functions and related classes, based on specific instances of higher-order rewrite systems like the lambda calculus. We will seek to synthesise complexity analysis techniques for HORSs from such implicit characterisations. Although this synthesis is clearly feasible, the so obtained methods are rarely precise, and often only effective on a small class of systems. To obtain methods of practical relevance, we will have to calibrate the techniques for precision and effectiveness.
+<p>
+To shed light on expressiveness and to demonstrate the feasibility of the established techniques, we will develop prototypical implementations along the theoretical development. Building upon the lessons learned from those prototypes, we integrate the established techniques into the Tyrolean Complexity Tool (TCT for short). TCT is a highly modular tool for the automated complexity analysis of rewrite systems. To date, it implements a majority of the state-of-the-art techniques for the analysis of first-order rewrite systems. Our additions will allow TCT to fully automatically analyse the runtime complexity of functional programs, via abstractions to HORSs.
+
+<h2> Funding </h2>
+
+This three years project is supported by the <a href='https://fwf.ac.at'>FWF Austrian Science Fund</a>,
+project number <a href='https://list.fwf.ac.at/en/research-in-practice/in-the-spotlight-schroedinger/list-of-schroedinger-fellows/2014/185965'>J-3563</a>.
+
+
+<h2>List of Publications</h2>
+
+<ul class="publicaton-list">
+  $for(publications)$
+  $if(schroedinger)$
+  <li>
+    <p>
+      $partial("templates/bibtex-entry.html")$
+    </p>
+  </li>
+  $endif$
+  $endfor$
+</ul>
+
+

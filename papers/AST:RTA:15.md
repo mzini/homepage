@@ -11,6 +11,7 @@ year: 2015
 doi: 10.4230/LIPIcs.RTA.2015.23
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Certification
 copyright: cc
+schroedinger: yes
 ---
 
 Nowadays certification is widely employed by automated termination tools for term rewriting,

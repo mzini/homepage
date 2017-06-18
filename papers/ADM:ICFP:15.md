@@ -10,6 +10,7 @@ arxiv: 1506.05043
 doi: 10.1145/2784731.2784753
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Higher-Order, OCaml, Automation
 copyright: acm
+schroedinger: yes
 ---
 
 We show how the complexity of *higher-order* functional programs can

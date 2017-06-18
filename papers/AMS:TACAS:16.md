@@ -11,6 +11,7 @@ year: 2016
 tags: Program Analysis, Term Rewriting, Complexity Analysis, Automation, TCT, Runtime Complexity Analysis
 copyright: springer
 preprint: true
+schroedinger: yes
 ---
 
 In this paper we present [TCT](http://cl-informatik.uibk.ac.at/software/tct) v3.0, the latest version of our fully automated complexity analyser.

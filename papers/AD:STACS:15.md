@@ -13,6 +13,7 @@ arxiv: 1501.00894
 slides: avanzini-stacs15.pdf
 tags: ICC, Predicative Recursion, Invariance
 copyright: cc
+schroedinger: yes
 ---
   We study how the adoption of an evaluation mechanism with sharing
   and memoization impacts the class of functions which can be computed

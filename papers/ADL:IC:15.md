@@ -5,6 +5,7 @@ authors: M. Avanzini and U. {Dal Lago}
 year: 2015
 tags: Term Rewriting, Complexity Analysis, Memoization, Predicative Recursion, ICC
 accepted: Information and Computation
+schroedinger: yes
 ---
 
 We study how the adoption of an evaluation mechanism with sharing

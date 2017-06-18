@@ -11,6 +11,7 @@ publisher: dagstuhl
 doi: 10.4230/LIPIcs.FSCD.2016.10
 tags: Program Analysis, Graph Rewriting, Complexity Analysis, Runtime Complexity Analysis
 copyright: cc
+schroedinger: yes
 ---
 
 Term rewriting has been used as a formal model to reason about the complexity of logic, functional, and imperative programs.
