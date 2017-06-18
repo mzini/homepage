@@ -4,7 +4,7 @@ title: Complexity Analysis by Polymorphic Sized Type Inference and Constraint So
 authors: M. Avanzini and U. {Dal Lago}
 year: 2017
 proceedings: icfp22
-publisher: ACM
+publisher: acm
 series: pacmpl
 tags: Complexity Analysis, Higher-Order, Automation, Sized-Types
 schroedinger: yes

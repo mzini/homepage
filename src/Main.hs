@@ -231,13 +231,13 @@ publicationContext tags =
   <> field "bibid"            (return . getBibId)
   <> field "entryType"        entryType
   <> field "bibEntryType"     bibEntryType
-  <> longFields "series"      (seriesTex . lowercase)
-  <> longFields "copyright"   (copyrightTex . lowercase)
-  <> longFields "publisher"   (publisherTex . lowercase)
-  <> longFields "journal"     (journalTex . lowercase)
+  <> longFields "series"      seriesTex
+  <> longFields "copyright"   copyrightTex
+  <> longFields "publisher"   publisherTex
+  <> longFields "journal"     journalTex
   <> longFields "authors"     id
   <> longFields "pages"       id    
-  <> longFields "proceedings" (proceedingsTex . lowercase)
+  <> longFields "proceedings" proceedingsTex
   <> tagsField "theTags"      tags
   <> defaultContext
   where
