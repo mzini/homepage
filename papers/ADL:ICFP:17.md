@@ -1,13 +1,15 @@
 ---
-type: conference
-title: Complexity Analysis by Polymorphic Sized Type Inference and Constraint Solving
+type: article
+title: Automating Sized-Type Inference for Complexity Analysis
+journal: pacmpl
+volume: 1
 authors: M. Avanzini and U. {Dal Lago}
 year: 2017
-proceedings: icfp22
 publisher: acm
-series: pacmpl
 tags: Complexity Analysis, Higher-Order, Automation, Sized-Types
+doi: 10.1145/3110287
 schroedinger: yes
+copyright: cc
 ---
 
 This paper introduces a new methodology for the complexity analysis

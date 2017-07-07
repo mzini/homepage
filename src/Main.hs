@@ -194,11 +194,14 @@ publisherTex "springer" = "Springer Verlag Heidelberg"
 publisherTex "elsevier" = "Elsevier"
 publisherTex "acm" = "Association for Computing Machinery"
 publisherTex "dagstuhl" = "Leibnitz Zentrum für Informatik"
+publisherTex c = error $ "unknown publisher " ++ c
 
 journalTex :: String -> String
 journalTex "ic" = "Information and Computation"
 journalTex "tcs" = "Theoretical Computer Science"
 journalTex "lmcs" = "Logical Methods in Computer Science"
+journalTex "pacmpl" = "Proceedings of the ACM on Programming Languages"
+journalTex c = error $ "unknown journal " ++ c
 
 proceedingsTex :: String -> String
 proceedingsTex name = fromMaybe name $ do
