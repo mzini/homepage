@@ -343,13 +343,15 @@ cvCompiler =
      >>= loadAndApplyTemplate "templates/cv.html" defaultContext
      >>= wrapHtmlContent defaultContext
 
-cvPdfCompiler :: Compiler (Item TmpFile)
-cvPdfCompiler = 
+cvTexCompiler :: Compiler (Item String)
+cvTexCompiler = 
     cvPandocCompiler False
      >>= pandocToTex
      >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
      >>= loadAndApplyTemplate "templates/document.tex" defaultContext     
-     >>= xelatex   
+
+cvPdfCompiler :: Compiler (Item TmpFile)
+cvPdfCompiler = cvTexCompiler >>= xelatex   
 
 ----------------------------------------------------------------------
 -- index
@@ -472,6 +474,11 @@ main = hakyllWith config $ do
     match "cv.md" $ do
         route (setExtension "html")
         compile cvCompiler
+
+    match "cv.md" $ version "tex" $ do
+        route (setExtension "tex")
+        compile cvTexCompiler
+
 
     match "cv.md" $ version "pdf" $ do
         route (setExtension ".pdf")
