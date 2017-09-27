@@ -3,7 +3,7 @@ title: DICE 2018 - Developments in Implicit Computational Complexity
 ---
 
 # <a name="introduction"/> Developments in Implicit Computational Complexity
-## Thessaloniki, Greece - April 21, 2018 - part of ETAPS 2018
+## Thessaloniki, Greece - April 14-15, 2018 - part of ETAPS 2018
 
 
 ### <a name="context"/> Context
@@ -21,7 +21,7 @@ tba -->
 
 ### <a name="venue"/> Venue
 
-The workshop will be held in [Thessaloniki](https://en.wikipedia.org/wiki/Thessaloniki), Greece, on April 21, 2018, see also the corresponding [ETAPS page](https://www.etaps.org/index.php/2018/venue).
+The workshop will be held in [Thessaloniki](https://en.wikipedia.org/wiki/Thessaloniki), Greece, on April 14-15, 2018, see also the corresponding [ETAPS page](https://www.etaps.org/index.php/2018/venue).
 
 Thessaloniki is a Greek port city on the Thermaic Gulf of the Aegean Sea. It was among the biggest and wealthiest city of the Byzantine Empire and is home to numerous notable Byzantine monuments.
 Thessaloniki features a mild climate, with [average temperatures](https://weatherspark.com/m/148497/4/Average-Weather-in-April-at-Thessaloniki-Airport-Greece) around 20 degree in the third week of April.
