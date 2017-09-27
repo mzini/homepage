@@ -20,7 +20,7 @@ div#navigation {
     float: left;
     position: fixed;
     top:0px;
-    width: 140px;
+    width: 180px;
     height: 100%;
 }
 
@@ -34,6 +34,12 @@ div#navigation a {
     margin-bottom: 15px;        
 }
 
+div#navigation h1 a {
+    border: none;
+    font-style: normal;
+    margin-bottom: 15px;        
+}
+
 div#navigation p {
     text-align: right;
 }
@@ -42,14 +48,8 @@ div#navigation h1 {
     margin-bottom:20px;
 }
 
-/* h1#title { */
-/*     margin-top:20px; */
-/*     margin-bottom:20px;     */
-/*     font-size: 32px;     */
-/* }     */
-
 div#content {
-    margin: 0px 0px 0px 160px;
+    margin: 0px 0px 0px 200px;
     padding-right: 10px;
     width: 844px;
 }
@@ -125,6 +125,10 @@ div#navigation a {
     text-transform: uppercase;
 }
 
+div#navigation h1 a {
+    text-decoration: none;
+    text-transform: capitalize;
+}
 
 code {
     color: #2B5573;

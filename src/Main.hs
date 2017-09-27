@@ -66,11 +66,14 @@ sortByDate which = sortByItems (getFieldUTC which . itemIdentifier)
 ----------------------------------------------------------------------
 -- compiler combinators
 
-wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
-wrapHtmlContent ctx = 
+wrapHtmlContentIn :: Identifier -> Context String -> Item String -> Compiler (Item String)
+wrapHtmlContentIn template ctx = 
   loadAndApplyTemplate "templates/content.html" ctx
-  >=> loadAndApplyTemplate "templates/default.html" ctx
+  >=> loadAndApplyTemplate template ctx
   >=> relativizeUrls
+
+wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
+wrapHtmlContent = wrapHtmlContentIn "templates/default.html"
 
 templateAsHtmlContent :: Context String -> Compiler (Item String)
 templateAsHtmlContent ctx = 
@@ -430,17 +433,6 @@ main = hakyllWith config $ do
         compile $ metadataCompiler "templates/software-cv.md"
     match "software/libraries/*.md" $ version "cv" $ 
         compile $ metadataCompiler "templates/software-cv.md"
-
-    -- hosa page
-    match "software/hosa/*.md" $ do
-        route  $ setExtension "html"
-        compile $ pandocCompiler >>= wrapHtmlContent defaultContext
-
-    -- schroedinger page
-    match "projects/J3563/*.html" $ do
-        route idRoute
-        let ctx = listField "publications" (publicationContext tags) loadPublications <> defaultContext
-        compile $ templateAsHtmlContent ctx
         
     -- main pages
     match "software.html" $ do
@@ -487,6 +479,25 @@ main = hakyllWith config $ do
     match "index.html" $ do
       route idRoute
       compile (indexCompiler tags)
+
+
+    -- hosa page
+    match "software/hosa/*.md" $ do
+        route $ setExtension "html"
+        compile $ pandocCompiler >>= wrapHtmlContent defaultContext
+
+    -- other pages
+    match "projects/J3563/*.html" $ do
+        route idRoute
+        let ctx = listField "publications" (publicationContext tags) loadPublications <> defaultContext
+        compile $ templateAsHtmlContent ctx
+
+    -- dice 18
+    match "events/dice18/page.html" $ compile templateCompiler
+    
+    match "events/dice18/*.md" $ do
+        route $ setExtension "html"
+        compile $ pandocCompiler >>= wrapHtmlContentIn "events/dice18/page.html" defaultContext        
 
 
 
