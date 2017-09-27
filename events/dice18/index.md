@@ -41,7 +41,11 @@ Submissions of abstracts by PC members are allowed and encouraged.
 
 ### <a name="dates"/> Importand Dates
 
-tba
+
+* **Submission date**: 31 January 2018
+* **Notification date**: 25 February 2018 
+* **Final papers due**: 11 March 2018 
+
 
 ### <a name="pc"/> Program Committee
 
