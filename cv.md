@@ -57,6 +57,8 @@ $endfor$
 
 # Scientific Activities {-}
 
+- **Organiser.** \DATE{2017}
+  [9th Workshop on Developments in Implicit Computational Complexity](http://cl-informatik.uibk.ac.at/users/zini/events/dice18), Thessaloniki, Greece.
 - **PC member.** \DATE{2017}
   [17th International Workshop on Logic and Computational Complexity](http://www.cs.swansea.ac.uk/lcc/), Reykjavik, Island.
 - **PC member.** \DATE{2014} 
