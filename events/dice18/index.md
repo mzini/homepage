@@ -28,16 +28,15 @@ Thessaloniki features a mild climate, with [average temperatures](https://weathe
 
 ### <a name="submission"/> Submission
 
-tba
-<!--
-Authors are invited to submit an extended abstract of up to **5 pages by tba, 2018** to the DICE 2018 EasyChair page.
+Authors are invited to submit an extended abstract of up to **5 pages by 31 January, 2018** to the DICE 2018 EasyChair page.
 Abstracts must be written in English and be submitted as a single PDF file.
-Submissions will be judged on originality, relevance, interest and clarity. Accepted abstracts will be presented at the workshop. Abstract can contain material already published elsewhere before the workshop. Preference will be given to abstracts containing novel work (including work in progress).
+Submissions will be judged on originality, relevance, interest and clarity.
+Accepted abstracts will be presented at the workshop.
+Abstract can contain material already published elsewhere before the workshop.
+Preference will be given to abstracts containing novel work (including work in progress).
 The workshop will not have formal proceedings and is not intended to preclude later publication at another venue.
 
 Submissions of abstracts by PC members are allowed and encouraged.
-
--->
 
 ### <a name="dates"/> Importand Dates
 
@@ -49,18 +48,22 @@ Submissions of abstracts by PC members are allowed and encouraged.
 
 ### <a name="pc"/> Program Committee
 
-<!-- * [Martin Avanzini](http://cl-informatik.uibk.ac.at/users/zini) (Chair), INRIA Sophia-Antipolis -->
-
-
-tba
+* [Martin Avanzini](http://cl-informatik.uibk.ac.at/users/zini) (Chair), INRIA Sophia-Antipolis, France
+* [Florian Frohn](https://ffrohn.github.io/), RWTH Aachen, Germany, Netherlands
+* [Cynthia Kop](https://www.cs.ru.nl/~cynthiakop/index_en.html), Radboud University Nijmegen
+* [Flavien Breuvart](http://www.lipn.univ-paris13.fr/~breuvart/), LIPN, Université Paris 13, France
+* [Luca Roversi](http://www.di.unito.it/~rover/), Università degli Studi di Torino, Italy
+* [Olivier Laurent](https://perso.ens-lyon.fr/olivier.laurent/), CNRS and ENS Lyon, France
+* [Romain Péchoux](https://members.loria.fr/RPechoux/), LORIA, France
+* [Van Chan Ngo](http://channgo2203.github.io/), Carnegie Mellon University, USA
 
 ### <a name="sc"/> Steering Committee
 
-* [Patrick Baillot](http://perso.ens-lyon.fr/patrick.baillot/) (Chair), CNRS and ENS Lyon
-* [Ugo Dal Lago](http://www.cs.unibo.it/~dallago/), University of Bologna
-* [Martin Hofmann](http://www2.tcs.ifi.lmu.de/~mhofmann/), LMU Munich
-* [Jean-Yves Marion](http://www.loria.fr/~marionjy/), University of Lorraine
-* [Simona Ronchi Della Rocca](http://www.di.unito.it/~ronchi/), University of Torino
+* [Patrick Baillot](http://perso.ens-lyon.fr/patrick.baillot/) (Chair), CNRS and ENS Lyon, France
+* [Ugo Dal Lago](http://www.cs.unibo.it/~dallago/), Alma Mater Studiorum Università di Bologna, Italy
+* [Martin Hofmann](http://www2.tcs.ifi.lmu.de/~mhofmann/), LMU Munich, Germany
+* [Jean-Yves Marion](http://www.loria.fr/~marionjy/), Université de Lorraine, France
+* [Simona Ronchi Della Rocca](http://www.di.unito.it/~ronchi/), Università degli Studi di Torino, Italy
 
 ### <a name="registration"/> Registration
 
