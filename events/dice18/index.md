@@ -49,13 +49,13 @@ Submissions of abstracts by PC members are allowed and encouraged.
 ### <a name="pc"/> Program Committee
 
 * [Martin Avanzini](http://cl-informatik.uibk.ac.at/users/zini) (Chair), INRIA Sophia-Antipolis, France
+* [Flavien Breuvart](http://www.lipn.univ-paris13.fr/~breuvart/), LIPN, Université Paris 13, France
 * [Florian Frohn](https://ffrohn.github.io/), RWTH Aachen, Germany, Netherlands
 * [Cynthia Kop](https://www.cs.ru.nl/~cynthiakop/index_en.html), Radboud University Nijmegen
-* [Flavien Breuvart](http://www.lipn.univ-paris13.fr/~breuvart/), LIPN, Université Paris 13, France
-* [Luca Roversi](http://www.di.unito.it/~rover/), Università degli Studi di Torino, Italy
 * [Olivier Laurent](https://perso.ens-lyon.fr/olivier.laurent/), CNRS and ENS Lyon, France
-* [Romain Péchoux](https://members.loria.fr/RPechoux/), LORIA, France
 * [Van Chan Ngo](http://channgo2203.github.io/), Carnegie Mellon University, USA
+* [Romain Péchoux](https://members.loria.fr/RPechoux/), LORIA, France
+* [Luca Roversi](http://www.di.unito.it/~rover/), Università degli Studi di Torino, Italy
 
 ### <a name="sc"/> Steering Committee
 
