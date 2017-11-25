@@ -54,7 +54,7 @@ Submissions of abstracts by PC members are allowed and encouraged.
 * [Cynthia Kop](https://www.cs.ru.nl/~cynthiakop/index_en.html), Radboud University Nijmegen
 * [Olivier Laurent](https://perso.ens-lyon.fr/olivier.laurent/), CNRS and ENS Lyon, France
 * [Van Chan Ngo](http://channgo2203.github.io/), Carnegie Mellon University, USA
-* [Romain Péchoux](https://members.loria.fr/RPechoux/), LORIA, France
+* [Romain Péchoux](https://members.loria.fr/RPechoux/), LORIA, Université de Lorraine, France
 * [Luca Roversi](http://www.di.unito.it/~rover/), Università degli Studi di Torino, Italy
 
 ### <a name="sc"/> Steering Committee
