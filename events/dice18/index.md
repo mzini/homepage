@@ -13,11 +13,35 @@ It takes place anually as part of [ETAPS](https://www.etaps.org/).
 ### <a name="topics"/> Scope and Topics
 
 The area of *Implicit Computational Complexity (ICC)* has grown from several proposals for using logic and formal methods to provide languages for complexity-bounded computation (e.g. PTIME, LOGSPACE computation). Its aim is to study computational complexity without reference to external measuring conditions or particular machine models, but only in terms of language restrictions or logical/computational principles implying complexity properties.
+This workshop focuses on ICC methods related to programs (rather than
+descriptive methods). In this approach one relates complexity classes
+to restrictions on programming paradigms (functional programs, lambda
+calculi, rewriting systems), such as ramified recurrence, weak
+polymorphic types, linear logic and linear types, and interpretative
+measures. The two main objectives of this area are:
 
-This workshop focuses on ICC methods related to programs. Traditionally, in this approach one relates complexity classes to restrictions on programming paradigms (functional programs, lambda calculi, rewriting systems), such as ramified recurrence, weak polymorphic types, linear logic and linear types, and interpretative measures.
+* to find natural implicit characterizations of various complexity
+  classes of functions, thereby illuminating their nature and
+  importance;
+* to design methods suitable for static verification of program
+  complexity.
 
-<!-- The workshop will be open to contributions on various aspects of ICC including (but not exclusively):
-tba -->
+Therefore ICC connects both to the study of complexity classes and to
+static program analysis. The workshop is open to contributions on
+various aspects of ICC and resource analysis, including (but not
+exclusively):
+
+* type systems for controlling/inferring/checking complexity;
+* logical and machine-independent characterisations of complexity
+  classes;
+* programming languages for complexity-bounded computation;
+* logics closely related to complexity classes;
+* theoretical foundations of program complexity analysis;
+* static resource analysis and practical applications;
+* semantics of complexity-bounded computation;
+* applications of implicit complexity to security;
+* termination and resource analysis for probabilistic programs;
+* semantic methods to analyse resources.
 
 ### <a name="venue"/> Venue
 
@@ -28,13 +52,19 @@ Thessaloniki features a mild climate, with [average temperatures](https://weathe
 
 ### <a name="submission"/> Submission
 
-Authors are invited to submit an extended abstract of up to **5 pages by 31 January, 2018** to the DICE 2018 EasyChair page.
-Abstracts must be written in English and be submitted as a single PDF file.
-Submissions will be judged on originality, relevance, interest and clarity.
-Accepted abstracts will be presented at the workshop.
-Abstract can contain material already published elsewhere before the workshop.
-Preference will be given to abstracts containing novel work (including work in progress).
-The workshop will not have formal proceedings and is not intended to preclude later publication at another venue.
+Authors are invited to submit an extended abstract of up to **5 pages by 31 January, 2018**.
+Abstracts must be written in English and must be
+prepared using the LaTeX
+[LIPIcs style template of 2016](http://www.dagstuhl.de/en/publications/lipics).
+Submissions are handled via the
+[DICE 2018 EasyChair page](https://easychair.org/conferences/?conf=dice2018).
+ 
+Submissions will be judged on originality, relevance, interest and
+clarity. Accepted abstracts will be presented at the workshop, and
+will be made available through the workshop's webpage. It is not
+intended to preclude later publication at another venue. Abstracts
+can contain material already published elsewhere. Preference will be
+given to abstracts containing novel work (including work in progress).
 
 Submissions of abstracts by PC members are allowed and encouraged.
 

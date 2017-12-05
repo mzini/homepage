@@ -1,0 +1,94 @@
+----------------------------------------------------------------------
+                              DICE 2018
+  9th Workshop on Developments in Implicit Computational complExity
+       http://cl-informatik.uibk.ac.at/users/zini/events/dice18
+
+                         Thessaloniki, Greece
+                         April 14 - 15, 2018
+                  (a satellite event of ETAPS 2018)
+----------------------------------------------------------------------
+
+SCOPE
+
+The area  of Implicit  Computational Complexity  (ICC) has  grown from
+several  proposals  for using  logic  and  formal methods  to  provide
+languages  for complexity-bounded  computation  (e.g. PTIME,  LOGSPACE
+computation).  Its aim  is to  study computational  complexity without
+reference  to  external  measuring conditions  or  particular  machine
+models,   but   only   in    terms   of   language   restrictions   or
+logical/computational principles implying complexity properties.
+
+This workshop focuses on ICC  methods related to programs (rather than
+descriptive methods). In this  approach one relates complexity classes
+to restrictions on programming  paradigms (functional programs, lambda
+calculi,  rewriting  systems),  such   as  ramified  recurrence,  weak
+polymorphic types,  linear logic and linear  types, and interpretative
+measures. The two main objectives of this area are:
+
+  * to find  natural implicit characterizations of  various complexity
+    classes  of  functions,  thereby  illuminating  their  nature  and
+    importance;
+  * to  design  methods suitable  for static  verification  of program
+    complexity.
+
+Therefore ICC connects both to the  study of complexity classes and to
+static program  analysis.  The  workshop is  open to  contributions on
+various  aspects of  ICC  and resource  analysis,  including (but  not
+exclusively):
+
+  * type systems for controlling/inferring/checking complexity;
+  * logical and  machine-independent  characterisations  of complexity
+    classes;
+  * programming languages for complexity-bounded computation;
+  * logics closely related to complexity classes;
+  * theoretical foundations of program complexity analysis;
+  * static resource analysis and practical applications;
+  * semantics of complexity-bounded computation;
+  * applications of implicit complexity to security;
+  * termination and resource analysis for probabilistic programs;
+  * semantic methods to analyse resources.
+
+
+SUBMISSIONS
+
+Authors are invited to submit an extended abstract of up to 5 pages by
+31 January,  2018.  Abstracts must be  written in English and  must be
+prepared  using  the   LaTeX  LIPIcs  style  template   of  2016  (see
+http://www.dagstuhl.de/en/publications/lipics).     Submissions    are
+handled via the DICE 2018 EasyChair page:
+
+https://easychair.org/conferences/?conf=dice2018 .
+   
+Submissions  will be  judged on  originality, relevance,  interest and
+clarity.  Accepted  abstracts will be  presented at the  workshop, and
+will  be made  available through  the workshop's  webpage.  It  is not
+intended to  preclude later  publication at another  venue.  Abstracts
+can contain material already  published elsewhere.  Preference will be
+given to abstracts containing novel work (including work in progress).
+
+
+IMPORTANT DATES
+
+Paper submission      31 January, 2018
+Notification          25 February, 2018
+Final versions due    11 March, 2018
+Workshop date         April 14-15, 2018
+
+
+CONFERENCE VENUE
+
+The workshop  will be  held as  a satellite  workshop of  the European
+Joint Conferences on Theory and Practice of Software 2018 (ETAPS 2018)
+which takes place in Thessaloniki, Greece.
+
+
+PROGRAM COMMITTEE
+
+Martin Avanzini (France, chair)
+Flavien Breuvart (France)
+Florian Frohn (Germany)
+Cynthia Kop (Netherlands)
+Olivier Laurent (France)
+Van Chan Ngo (USA)
+Romain Péchoux (France)
+Luca Roversi (Italy)
