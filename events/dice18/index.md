@@ -43,6 +43,11 @@ exclusively):
 * termination and resource analysis for probabilistic programs;
 * semantic methods to analyse resources.
 
+### <a name="is"/> Invited Speakers
+
+* [Jan Hoffmann](http://www.cs.cmu.edu/~janh/), Carnegie Mellon University, USA
+* [Anupam Das](http://www.anupamdas.com/wp/), University of Copenhagen, Denmark
+
 ### <a name="venue"/> Venue
 
 The workshop will be held in [Thessaloniki](https://en.wikipedia.org/wiki/Thessaloniki), Greece, on April 14-15, 2018, see also the corresponding [ETAPS page](https://www.etaps.org/index.php/2018/venue).
