@@ -26,8 +26,11 @@ measures. The two main objectives of this area are:
 * to design methods suitable for static verification of program
   complexity.
 
-Therefore ICC connects both to the study of complexity classes and to
-static program analysis.
+Therefore ICC connects both to the  study of complexity classes and to
+static program  analysis, in  particular, resource analysis.  With the
+aim to more closely bring  together researches from these fields, this
+year contributions related to program's resource analysis are strongly
+encouraged.
 
 The workshop is open to contributions on
 various aspects of ICC and resource analysis, including (but not
