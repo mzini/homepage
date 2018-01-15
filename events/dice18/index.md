@@ -27,7 +27,9 @@ measures. The two main objectives of this area are:
   complexity.
 
 Therefore ICC connects both to the study of complexity classes and to
-static program analysis. The workshop is open to contributions on
+static program analysis.
+
+The workshop is open to contributions on
 various aspects of ICC and resource analysis, including (but not
 exclusively):
 
