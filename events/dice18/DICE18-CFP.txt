@@ -56,7 +56,7 @@ resource analysis, including (but not exclusively):
 SUBMISSIONS
 
 Authors are invited to submit an extended abstract of up to 5 pages by
-31 January,  2018.  Abstracts must be  written in English and  must be
+7 February,  2018.  Abstracts must be  written in English and  must be
 prepared  using  the   LaTeX  LIPIcs  style  template   of  2016  (see
 http://www.dagstuhl.de/en/publications/lipics).     Submissions    are
 handled via the DICE 2018 EasyChair page:
@@ -73,7 +73,7 @@ given to abstracts containing novel work (including work in progress).
 
 IMPORTANT DATES
 
-Paper submission      31 January, 2018
+Paper submission      7 February, 2018 (extended)
 Notification          25 February, 2018
 Final versions due    11 March, 2018
 Workshop date         April 14-15, 2018

@@ -4,6 +4,7 @@ title: DICE 2018 - Developments in Implicit Computational Complexity
 
 # <a name="introduction"/> Developments in Implicit Computational Complexity
 ## Thessaloniki, Greece - April 14-15, 2018 - part of ETAPS 2018
+## (Extended Deadline!)
 
 
 ### <a name="context"/> Context
@@ -62,7 +63,7 @@ Thessaloniki features a mild climate, with [average temperatures](https://weathe
 
 ### <a name="submission"/> Submission
 
-Authors are invited to submit an extended abstract of up to **5 pages by 31 January, 2018**.
+Authors are invited to submit an extended abstract of up to **5 pages by 7 February, 2018**.
 Abstracts must be written in English and must be
 prepared using the LaTeX
 [LIPIcs style template of 2016](http://www.dagstuhl.de/en/publications/lipics).
@@ -81,7 +82,7 @@ Submissions of abstracts by PC members are allowed and encouraged.
 ### <a name="dates"/> Importand Dates
 
 
-* **Submission date**: 31 January 2018
+* **Submission date**: *5 February 2018 (extended)*
 * **Notification date**: 25 February 2018 
 * **Final papers due**: 11 March 2018 
 
