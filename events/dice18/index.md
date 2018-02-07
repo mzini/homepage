@@ -82,7 +82,7 @@ Submissions of abstracts by PC members are allowed and encouraged.
 ### <a name="dates"/> Importand Dates
 
 
-* **Submission date**: *5 February 2018 (extended)*
+* **Submission date**: *7 February 2018 (extended)*
 * **Notification date**: 25 February 2018 
 * **Final papers due**: 11 March 2018 
 
