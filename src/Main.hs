@@ -494,7 +494,9 @@ main = hakyllWith config $ do
 
     -- dice 18
     match "events/dice18/page.html" $ compile templateCompiler
-    
+    match "events/dice18/abstracts/*.pdf" $ do
+        route   idRoute
+        compile copyFileCompiler
     match "events/dice18/*.md" $ do
         route $ setExtension "html"
         compile $ pandocCompiler >>= wrapHtmlContentIn "events/dice18/page.html" defaultContext        
