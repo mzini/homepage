@@ -16,49 +16,68 @@ body {
 div#navigation {
     padding-bottom: 10px;
     padding-right: 10px;    
-    text-align: right;
-    float: left;
-    position: fixed;
+    text-align: left;
     top:0px;
-    width: 180px;
-    height: 100%;
 }
+
 
 div#navigation h1, div#navigation a {
     display: block;
 }
 
-div#navigation a {
-    border: none;
-    font-style: normal;
-    margin-bottom: 15px;        
-}
-
-div#navigation h1 a {
-    border: none;
-    font-style: normal;
-    margin-bottom: 15px;        
-}
-
-div#navigation p {
-    text-align: right;
-}
-div#navigation h1 {
-    border: none;
-    margin-bottom:20px;
-}
-
-div#content {
-    margin: 0px 0px 0px 200px;
-    padding-right: 10px;
-    width: 844px;
-}
 
 div#footer{
     padding-top:40px;
     text-align:center;    
     clear:both;
     font-size:50%;
+}
+
+@media (min-width: 1064px) {
+    div#navigation {    
+	padding-bottom: 10px;
+	padding-right: 10px;    
+	text-align: right;
+	float: left;
+	position: fixed;
+	top:0px;
+	width: 180px;
+	height: 100%;
+    }
+
+    div#navigation p {
+	text-align: right;
+    }
+
+
+    div#content {
+	margin: 0px 0px 0px 200px;
+	padding-right: 10px;
+	width: 844px;
+    }
+    
+
+    div#navigation a {
+	border: none;
+	font-style: normal;
+	margin-bottom: 15px;        
+    }
+
+    div#navigation h1 a {
+	border: none;
+	font-style: normal;
+	margin-bottom: 15px;        
+    }
+
+
+    div#navigation h1 {
+	border: none;
+	margin-bottom:20px;
+    }
+
+    p {
+	text-align: justify;
+    }
 }
 
 /* ---------------------------------------------------------------------- */
@@ -74,7 +93,6 @@ html {
 
 p {
     margin: 20px 0px;
-    text-align: justify;
 }
 
 a {
