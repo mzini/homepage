@@ -4,7 +4,6 @@ title: DICE 2018 - Developments in Implicit Computational Complexity
 
 # <a name="introduction"/> Developments in Implicit Computational Complexity
 ## Thessaloniki, Greece - April 14-15, 2018 - part of ETAPS 2018
-## (Extended Deadline!)
 
 
 ### <a name="context"/> Context
@@ -56,10 +55,12 @@ exclusively):
 * [Anupam Das](http://www.anupamdas.com/wp/), University of Copenhagen, Denmark
 
 
-### <a name="program"/> Program
+### <a name="program"/> Program (preliminary)
 
 ------------- --------------------------------------------------------------------
 **Saturday**
+
+08:30 - 9:00  Welcome
 
 09:00 - 10:00 *Anupam Das*:
               tba (invited talk)
