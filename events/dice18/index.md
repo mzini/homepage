@@ -100,7 +100,7 @@ exclusively):
 **Sunday**
 
 09:00 - 10:00 *Jan Hoffmann*:
-               Resource Analysis for Probabilistic Programs
+               Resource analysis for probabilistic programs
                (invited talk)
 
 10:00 - 10:30 Coffee Break
