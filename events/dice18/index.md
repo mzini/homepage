@@ -100,7 +100,8 @@ exclusively):
 **Sunday**
 
 09:00 - 10:00 *Jan Hoffmann*:
-              tba (invited talk)
+               Resource Analysis for Probabilistic Programs
+               (invited talk)
 
 10:00 - 10:30 Coffee Break
 
