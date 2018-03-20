@@ -14,7 +14,6 @@ This edition of the workshop is dedicated to [Martin Hofmann](https://www.tcs.if
 
 
 
-
 ### <a name="topics"/> Scope and Topics
 
 The area of *Implicit Computational Complexity (ICC)* has grown from several proposals for using logic and formal methods to provide languages for complexity-bounded computation (e.g. PTIME, LOGSPACE computation). Its aim is to study computational complexity without reference to external measuring conditions or particular machine models, but only in terms of language restrictions or logical/computational principles implying complexity properties.
