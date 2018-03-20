@@ -107,7 +107,7 @@ exclusively):
 10:30 - 11:15 *Beniamino Accattoli, Delia Kesner and Stéphane Graham-Lengrand*:
               Multi types, evaluation lengths, and normal forms ([abstract](abstracts/AKGL.pdf))
 
-11:15 - 12:00 *Patrick Baillot and and Alexis Ghyselen*:
+11:15 - 12:00 *Patrick Baillot and Alexis Ghyselen*:
               Combining linear logic and size types for implicit
               complexity ([abstract](abstracts/BG.pdf))
 
