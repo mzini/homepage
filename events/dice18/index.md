@@ -10,6 +10,10 @@ title: DICE 2018 - Developments in Implicit Computational Complexity
 [DICE](http://perso.ens-lyon.fr/patrick.baillot/DICE/) is a thematic workshop in the field of *Implicit Computational Complexity (ICC)*, where researchers in the area can meet and discuss their most recent results.
 It takes place anually as part of [ETAPS](https://www.etaps.org/).
 
+This edition of the workshop is dedicated to [Martin Hofmann](https://www.tcs.ifi.lmu.de/people/martin-hofmann), who passed away in January while hicking in Japan.
+
+
+
 
 ### <a name="topics"/> Scope and Topics
 
