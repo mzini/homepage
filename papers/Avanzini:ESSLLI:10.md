@@ -1,8 +1,8 @@
 ---
 type: conference
-title: POP* and Semantic Labeling Using SAT
+title: "POP* and Semantic Labeling Using SAT"
 authors: M. Avanzini
-proceedings: Interfaces: Explorations in Logic, Language and Computation, ESSLLI 2008 and ESSLLI 2009 Student Sessions. Selected Papers.
+proceedings: "Interfaces: Explorations in Logic, Language and Computation, ESSLLI 2008 and ESSLLI 2009 Student Sessions. Selected Papers."
 publisher: springer
 series: lncs
 volume: 6211
@@ -13,14 +13,14 @@ preprint: true
 tags: Term Rewriting, Complexity Analysis, Runtime Complexity Analysis, Path Orders, Automation, Predicative Recursion
 ---
 
-The *polynomial path order* is 
-a termination method that induces polynomial bounds on the 
+The *polynomial path order* is
+a termination method that induces polynomial bounds on the
 innermost runtime complexity of term rewrite systems.
 *Semantic labeling* is a transformation technique used for proving termination.
 
 In this paper, we propose an efficient implementation of polynomial path orders together with
-*finite semantic labeling*. This automation works by a reduction to the problem of 
-*boolean satisfiability*. 
+*finite semantic labeling*. This automation works by a reduction to the problem of
+*boolean satisfiability*.
 We have implemented the technique and experimental results confirm the feasibility of our approach.
 By semantic labeling the analytical power of polynomial path orders
 is significantly increased.

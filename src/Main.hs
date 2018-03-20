@@ -33,7 +33,7 @@ system_ = void . system . unwords
 getFieldUTC :: MonadMetadata m => String -> Identifier -> m UTCTime
 getFieldUTC fld id' = do
     metadata <- getMetadata id'
-    let tryField k fmt = M.lookup k metadata >>= parseTime' fmt
+    let tryField k fmt = lookupString k metadata >>= parseTime' fmt
     maybe empty' return $ msum [tryField fld fmt | fmt <- formats]
   where
     empty'     = fail $ "could not parse time for " ++ show id'
@@ -47,10 +47,10 @@ getFieldUTC fld id' = do
         , "%B %e, %Y"
         , "%b %d, %Y"
         , "%B, %Y"
-        , "%Y"        
+        , "%Y"
         ]
 
----------------------------------------------------------------------- 
+----------------------------------------------------------------------
 -- sorting
 
 sortByItems :: (Ord b) => (Item a -> Compiler b) -> [Item a] -> Compiler [Item a]
@@ -67,7 +67,7 @@ sortByDate which = sortByItems (getFieldUTC which . itemIdentifier)
 -- compiler combinators
 
 wrapHtmlContentIn :: Identifier -> Context String -> Item String -> Compiler (Item String)
-wrapHtmlContentIn template ctx = 
+wrapHtmlContentIn template ctx =
   loadAndApplyTemplate "templates/content.html" ctx
   >=> loadAndApplyTemplate template ctx
   >=> relativizeUrls
@@ -76,8 +76,8 @@ wrapHtmlContent :: Context String -> Item String -> Compiler (Item String)
 wrapHtmlContent = wrapHtmlContentIn "templates/default.html"
 
 templateAsHtmlContent :: Context String -> Compiler (Item String)
-templateAsHtmlContent ctx = 
-  getResourceBody 
+templateAsHtmlContent ctx =
+  getResourceBody
    >>= applyAsTemplate ctx
    >>= wrapHtmlContent (metadataField <> defaultContext)
 
@@ -86,8 +86,8 @@ templateAsHtmlContent ctx =
 -- specific compilers
 
 metadataCompiler :: Identifier -> Compiler (Item String)
-metadataCompiler template = 
-    pandocCompiler 
+metadataCompiler template =
+    pandocCompiler
     >>= loadAndApplyTemplate template (metadataField <> defaultContext)
 
 pandocToTex :: Item String -> Compiler (Item String)
@@ -123,22 +123,22 @@ loadEvents :: Compiler [Item String]
 loadEvents = loadAll "events/*.md"
 
 upcomingEvents :: Compiler [Item String]
-upcomingEvents = do 
+upcomingEvents = do
   now <- unsafeCompiler getCurrentTime
-  loadEvents 
+  loadEvents
     >>= filterM (\ item -> (>= now) <$> getFieldUTC "start" (itemIdentifier item))
 
 pastEvents :: Compiler [Item String]
-pastEvents = do 
+pastEvents = do
   now <- unsafeCompiler getCurrentTime
-  loadEvents 
+  loadEvents
     >>= filterM (\ item -> (< now) <$> getFieldUTC "end" (itemIdentifier item))
 
 eventContext :: Context String
-eventContext = 
- metadataField 
- <> defaultContext 
- <> field "when" (\ item -> do 
+eventContext =
+ metadataField
+ <> defaultContext
+ <> field "when" (\ item -> do
        let i = itemIdentifier item
        start <- formatTime defaultTimeLocale "%d %B " <$> getFieldUTC "start" i
        end <-   formatTime defaultTimeLocale "%d %B, %Y" <$> getFieldUTC "end" i
@@ -150,14 +150,14 @@ eventContext =
 loadProjects :: Compiler [Item String]
 loadProjects = reverse <$> loadAll "projects/*.md"
 
-projectContext :: Context String        
+projectContext :: Context String
 projectContext = metadataField <> defaultContext
 
 ----------------------------------------------------------------------
 -- software
 
 softwareListCompiler :: Compiler (Item String)
-softwareListCompiler = do 
+softwareListCompiler = do
   tools <- loadAll ("software/tools/*.md" .&&. hasNoVersion)
   libs <- loadAll ("software/libraries/*.md" .&&. hasNoVersion)
   templateAsHtmlContent $
@@ -168,7 +168,7 @@ softwareListCompiler = do
 -- papers
 
 getBibId :: Item a -> String
-getBibId = takeBaseName . toFilePath . itemIdentifier  
+getBibId = takeBaseName . toFilePath . itemIdentifier
 
 entryType :: Item a -> Compiler String
 entryType item = getMetadataField' (itemIdentifier item) "type"
@@ -188,7 +188,7 @@ seriesTex "lipics" = "Leibnitz International Proceedings in Informatics"
 seriesTex "pacmpl" = "Proceedings of the ACM on Programming Languages"
 seriesTex s = s
 
-copyrightTex :: String -> String                      
+copyrightTex :: String -> String
 copyrightTex "cc" = "Creative Commons License - ND"
 copyrightTex c = publisherTex c
 
@@ -216,7 +216,7 @@ proceedingsTex name = fromMaybe name $ do
             | num `mod` 10 == 2 && num > 20 = "\\nnd{" ++ show num ++ "}"
             | num `mod` 10 == 3 && num > 20 = "\\nrd{" ++ show num ++ "}"
             | otherwise                     = "\\nth{" ++ show num ++ "}"
-            
+
 conferenceTex :: String -> String
 conferenceTex "rta" = "International Conference on Rewriting Techniques and Applications"
 conferenceTex "aplas" = "Asian Symposium on Programming Languages and Systems"
@@ -225,14 +225,14 @@ conferenceTex "fscd"  = "International Conference on Formal Structures for Compu
 conferenceTex "hart"  = "Workshop on Haskell and Rewriting Techniques"
 conferenceTex "icfp"  = "ACM SIGPLAN International Conference on Functional Programming"
 conferenceTex "ijcar" = "International Joint Conference on Automated Reasoning"
-conferenceTex "flops" = "International Symposium on Functional and Logic Programming"      
+conferenceTex "flops" = "International Symposium on Functional and Logic Programming"
 conferenceTex "stacs" = "International Symposium on Theoretical Aspects of Computer Science"
 conferenceTex "tacas" = "International Conference on Tools and Algorithms for the Construction and Analysis of Systems"
 conferenceTex "wst"   = "Workshop on Termination"
 conferenceTex p       = p
 
-publicationContext :: Tags -> Context String        
-publicationContext tags = 
+publicationContext :: Tags -> Context String
+publicationContext tags =
   metadataField
   <> field "bibid"            (return . getBibId)
   <> field "entryType"        entryType
@@ -242,7 +242,7 @@ publicationContext tags =
   <> longFields "publisher"   publisherTex
   <> longFields "journal"     journalTex
   <> longFields "authors"     id
-  <> longFields "pages"       id    
+  <> longFields "pages"       id
   <> longFields "proceedings" proceedingsTex
   <> tagsField "theTags"      tags
   <> defaultContext
@@ -250,23 +250,23 @@ publicationContext tags =
     lowercase = map toLower
     longFields n f =
       field (n ++ "Tex") (\ item -> fromMaybe "???" <$> fmap f <$> getMetadataField (itemIdentifier item) n)
-      <> field (n ++ "Html") (\ item -> fromMaybe "???" <$> fmap htmlize <$> fmap f <$> getMetadataField (itemIdentifier item) n)              
-    htmlize =       sub "(\\{|\\})" ""    
-      . sub "\\\\ " " "    
-      . sub "--" "&ndash;"          
-      . sub "\\\\nrd\\{([0-9]*)\\}" "\\1rd"  
+      <> field (n ++ "Html") (\ item -> fromMaybe "???" <$> fmap htmlize <$> fmap f <$> getMetadataField (itemIdentifier item) n)
+    htmlize =       sub "(\\{|\\})" ""
+      . sub "\\\\ " " "
+      . sub "--" "&ndash;"
+      . sub "\\\\nrd\\{([0-9]*)\\}" "\\1rd"
       . sub "\\\\nnd\\{([0-9]*)\\}" "\\1nd"
-      . sub "\\\\nst\\{([0-9]*)\\}" "\\1st"      
-      . sub "\\\\nth\\{([0-9]*)\\}" "\\1th" 
+      . sub "\\\\nst\\{([0-9]*)\\}" "\\1st"
+      . sub "\\\\nth\\{([0-9]*)\\}" "\\1th"
     sub pat = flip (subRegex (mkRegex pat))
 
-  
+
 loadPublications :: Compiler [Item String]
 loadPublications = sortByDate "year" =<< loadAll ("papers/*.md" .&&. hasNoVersion)
 
 publicationCompiler :: Tags -> Compiler (Item String)
-publicationCompiler tags = 
-    pandocCompiler 
+publicationCompiler tags =
+    pandocCompiler
      >>= loadAndApplyTemplate "templates/publication.html" ctx
      >>= wrapHtmlContent ctx
     where ctx = publicationContext tags
@@ -274,15 +274,15 @@ publicationCompiler tags =
 publicationListContext :: Tags -> [Item String] -> Context String
 publicationListContext tags pubs =
     publicationField "workshop"      (== "workshop")
-    <> publicationField "thesis"     (`elem` ["phdthesis", "mastersthesis"])     
-    <> publicationField "conference" (== "conference") 
+    <> publicationField "thesis"     (`elem` ["phdthesis", "mastersthesis"])
+    <> publicationField "conference" (== "conference")
     <> publicationField "article"    (== "article")
     <> publicationField "draft"      (== "draft")
     <> publicationField "misc"       (== "misc")
     <> field "tagcloud" (const $ renderTagCloud 30 150 tags)
     <> listField "publications" pctx (return pubs)
     <> defaultContext
-  where 
+  where
     pctx = publicationContext tags
     publicationField n f = listField n pctx (filterType f)
     filterType f = filterM (\ item -> f <$> entryType item) pubs
@@ -305,17 +305,17 @@ publicationListCompiler tags = do
 publicationListPdfCompiler :: Tags -> Compiler (Item TmpFile)
 publicationListPdfCompiler tags = do
   pubs <- loadPublications
-  getResourceBody 
+  getResourceBody
    >>= applyAsTemplate (publicationListContext tags pubs)
    >>= loadAndApplyTemplate "templates/document.tex" defaultContext
-   >>= xelatex   
+   >>= xelatex
 
 publicationListTexCompiler :: Tags -> Compiler (Item String)
 publicationListTexCompiler tags = do
   pubs <- loadPublications
-  getResourceBody 
+  getResourceBody
    >>= applyAsTemplate (publicationListContext tags pubs)
-   >>= loadAndApplyTemplate "templates/document.tex" defaultContext   
+   >>= loadAndApplyTemplate "templates/document.tex" defaultContext
 
 bibliographyCompiler :: Tags -> Compiler (Item String)
 bibliographyCompiler tags = do
@@ -331,7 +331,7 @@ cvPandocCompiler html = do
   projects <- sortByDate "end" =<< loadProjects
   tools <- loadAll ("software/tools/*.md" .&&. hasVersion "cv")
   libs <- loadAll ("software/libraries/*.md" .&&. hasVersion "cv")
-  let 
+  let
    ctx = listField "projects" projectContext (return projects)
          <> listField "tools" (metadataField <> defaultContext) (return tools)
          <> listField "libs"  (metadataField <> defaultContext) (return libs)
@@ -339,22 +339,22 @@ cvPandocCompiler html = do
          <> defaultContext
   getResourceBody >>= applyAsTemplate ctx >>= gpp
 
-cvCompiler :: Compiler (Item String)           
-cvCompiler = 
+cvCompiler :: Compiler (Item String)
+cvCompiler =
     cvPandocCompiler True >>= renderPandoc
-     >>= return . fmap demoteHeaders                    
+     >>= return . fmap demoteHeaders
      >>= loadAndApplyTemplate "templates/cv.html" defaultContext
      >>= wrapHtmlContent defaultContext
 
 cvTexCompiler :: Compiler (Item String)
-cvTexCompiler = 
+cvTexCompiler =
     cvPandocCompiler False
      >>= pandocToTex
      >>= loadAndApplyTemplate "templates/cv.tex" defaultContext
-     >>= loadAndApplyTemplate "templates/document.tex" defaultContext     
+     >>= loadAndApplyTemplate "templates/document.tex" defaultContext
 
 cvPdfCompiler :: Compiler (Item TmpFile)
-cvPdfCompiler = cvTexCompiler >>= xelatex   
+cvPdfCompiler = cvTexCompiler >>= xelatex
 
 ----------------------------------------------------------------------
 -- index
@@ -365,12 +365,12 @@ indexCompiler tags = do
    events <- reverse <$> (sortByDate "start" =<< upcomingEvents)
    events' <- sortByDate "end" =<< pastEvents
    projects <- sortByDate "end" =<< loadProjects
-   templateAsHtmlContent 
+   templateAsHtmlContent
          (  listField "publications"      (publicationContext tags)    (return pubs)
          <> boolField "hasUpcomingEvents" (const (not (null events)))
-         <> listField "upcomingEvents"    eventContext                 (return events) 
-         <> listField "pastEvents"        eventContext                 (return events')          
-         <> listField "projects"          projectContext               (return projects)                     
+         <> listField "upcomingEvents"    eventContext                 (return events)
+         <> listField "pastEvents"        eventContext                 (return events')
+         <> listField "projects"          projectContext               (return projects)
          <> defaultContext )
 
 ----------------------------------------------------------------------
@@ -378,8 +378,8 @@ indexCompiler tags = do
 main :: IO ()
 main = hakyllWith config $ do
     tags <- buildTags "papers/*" (fromCapture "tags/*.html")
-    
-    -- files etc    
+
+    -- files etc
     match ("images/*.jpg" .||. "images/*.png") $ do
         route idRoute
         compile copyFileCompiler
@@ -391,7 +391,7 @@ main = hakyllWith config $ do
     match "slides/*.pdf" $ do
         route   idRoute
         compile copyFileCompiler
-        
+
     match "css/*" $ do
       route idRoute
       compile compressCssCompiler
@@ -401,27 +401,27 @@ main = hakyllWith config $ do
     match "404.html" $ do
         route idRoute
         compile $ pandocCompiler >>= wrapHtmlContent defaultContext
-    
-    -- papers 
+
+    -- papers
     match "papers/*.pdf" $ version "preview" $ do
         route   $ setExtension "png"
         compile $ getResourceFilePath >>= pdfToPng
 
     match "papers/*.md" $ version "bibtex" $ do
-        route   $ setExtension ".bib"    
+        route   $ setExtension ".bib"
         compile $
-          getResourceBody 
+          getResourceBody
            >>= loadAndApplyTemplate "templates/bibtex.bib" (publicationContext tags)
            >>= gpp
 
     match "papers/*.md" $ do
         route   $ setExtension ".html"
         compile $ publicationCompiler tags
-        
-    match "projects/*.md" $ 
+
+    match "projects/*.md" $
         compile $ metadataCompiler "templates/project.html"
 
-    match "events/*.md" $ 
+    match "events/*.md" $
         compile $ pandocCompiler >>= loadAndApplyTemplate "templates/event.html" eventContext
 
     match "software/tools/*.md" $
@@ -429,11 +429,11 @@ main = hakyllWith config $ do
     match "software/libraries/*.md" $
         compile $ metadataCompiler "templates/software.html"
 
-    match "software/tools/*.md" $ version "cv" $ 
+    match "software/tools/*.md" $ version "cv" $
         compile $ metadataCompiler "templates/software-cv.md"
-    match "software/libraries/*.md" $ version "cv" $ 
+    match "software/libraries/*.md" $ version "cv" $
         compile $ metadataCompiler "templates/software-cv.md"
-        
+
     -- main pages
     match "software.html" $ do
         route idRoute
@@ -441,10 +441,10 @@ main = hakyllWith config $ do
 
     match "contact.html" $ do
         route idRoute
-        compile $ templateAsHtmlContent defaultContext      
+        compile $ templateAsHtmlContent defaultContext
 
     match "publications.html" $ do
-        route (setExtension "html")    
+        route (setExtension "html")
         compile (publicationListCompiler tags)
 
     match "bibliography.bib" $ do
@@ -459,10 +459,10 @@ main = hakyllWith config $ do
         route idRoute
         compile (publicationListTexCompiler tags)
 
-    tagsRules tags $ \ tag pattern -> do 
+    tagsRules tags $ \ tag pattern -> do
         route   idRoute
         compile (publicationListCompilerForTag tag pattern tags)
-                                        
+
     match "cv.md" $ do
         route (setExtension "html")
         compile cvCompiler
@@ -499,13 +499,4 @@ main = hakyllWith config $ do
         compile copyFileCompiler
     match "events/dice18/*.md" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler >>= wrapHtmlContentIn "events/dice18/page.html" defaultContext        
-
-
-
-
-
-
-
-
-
+        compile $ pandocCompiler >>= wrapHtmlContentIn "events/dice18/page.html" defaultContext

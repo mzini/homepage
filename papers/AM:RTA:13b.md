@@ -1,7 +1,7 @@
 ---
 type: conference
 authors: M. Avanzini and G.Moser
-title: Tyrolean Complexity Tool: Features and Usage
+title: "Tyrolean Complexity Tool: Features and Usage"
 proceedings: rta24
 volume: 21
 series: lipics
@@ -18,6 +18,6 @@ The *Tyrolean Complexity Tool*, [TCT](http://cl-informatik.uibk.ac.at/software/t
 is an open source complexity analyser for term rewrite systems.
 Our tool TCT features a majority of the known techniques for the automated
 characterisation of polynomial complexity of rewrite systems
-and can investigate derivational and 
-runtime complexity, for full and innermost rewriting. 
+and can investigate derivational and
+runtime complexity, for full and innermost rewriting.
 This system description outlines features and provides a short introduction to the usage of TCT.
