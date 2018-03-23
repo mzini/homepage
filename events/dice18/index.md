@@ -58,7 +58,7 @@ exclusively):
 * [Anupam Das](http://www.anupamdas.com/wp/), University of Copenhagen, Denmark
 
 
-### <a name="program"/> Program (preliminary)
+### <a name="program"/> Program
 
 ------------- --------------------------------------------------------------------
 **Saturday**
@@ -66,7 +66,7 @@ exclusively):
 08:30 - 9:00  Welcome
 
 09:00 - 10:00 *Anupam Das*:
-              tba (invited talk)
+              Monotonicity in logic and complexity (invited talk)
 
 10:00 - 10:30 Coffee Break
 
