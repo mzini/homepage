@@ -101,6 +101,8 @@ exclusively):
 
 18:00 - 18:30 *Business Meeting*
 
+19:30 - ---   Workshop Dinner at [Christofer](http://www.christofer.gr/). The restaurant is reachable by a 15 minute walk along the sea, to the south. 
+
 **Sunday**
 
 09:00 - 10:00 *Jan Hoffmann*:
